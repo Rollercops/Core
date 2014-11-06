@@ -78,6 +78,7 @@ public:
     static Logger* root;
     static std::map<std::string, Logger*> loggers;
     static Logger* Singleton(std::string name = "");
+    static bool destroyLogger(std::string name);
     static void destroyAllLogger();
     
     void (*onRecord)(LogRecord* logRecord);

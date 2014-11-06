@@ -109,6 +109,21 @@ Logger* Logger::Singleton(std::string name)
     return (Logger::loggers[name]);
 }
 
+bool Logger::destroyLogger(std::string name)
+{
+    for (std::map<std::string, Logger*>::iterator it = Logger::loggers.begin(); it != Logger::loggers.end(); ++it)
+    {
+        if (it->first == name)
+        {
+            delete it->second;
+            Logger::loggers.erase(it);
+            return (true);
+        }
+    }
+    return (false);
+}
+
+
 void Logger::destroyAllLogger()
 {
     for (std::map<std::string, Logger*>::iterator it = Logger::loggers.begin(); it != Logger::loggers.end(); ++it)
@@ -117,7 +132,6 @@ void Logger::destroyAllLogger()
     }
     Logger::loggers.clear();
 }
-
 
 bool Logger::isLoggable(const Level& lvl) const
 {
