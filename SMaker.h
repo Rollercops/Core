@@ -8,7 +8,7 @@
 #ifndef		__SMAKER_HH__
 # define	__SMAKER_HH__
 
-# include	"libs.hh"
+# include	"libs.h"
 
 # define	SMAKER_EOL(x)	((SMaker::_eolStd) ? x << SMaker::_eol << std::endl : x << SMaker::_eol)
 

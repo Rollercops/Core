@@ -6,12 +6,14 @@
 #ifndef		__SOCK_HH__
 # define	__SOCK_HH__
 
-# include	"libs.hh"
+# include	"libs.h"
+
+typedef		int SOCKET;
 
 # if	defined(_WIN32) || defined(_WIN64)
 #  include	<winsock2.h>
 #  pragma	comment(lib, "Ws2_32.lib")
-# elif	defined(linux)
+# elif	defined(linux) || defined(__APPLE__)
 #  include	<sys/types.h>
 #  include	<sys/socket.h>
 #  include	<netinet/in.h>
@@ -21,7 +23,6 @@
 #  define	INVALID_SOCKET	-1
 #  define	SOCKET_ERROR	-1
 #  define	closesocket(s)	close(s)
-typedef		int SOCKET;
 typedef		struct sockaddr_in	SOCKADDR_IN;
 typedef		struct sockaddr		SOCKADDR;
 typedef		struct in_addr		IN_ADDR;

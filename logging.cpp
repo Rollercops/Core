@@ -91,7 +91,7 @@ Logger::Logger(std::string name) : _name(name), level(Level::INFO)
 
 Logger::~Logger()
 {
-    std::cout << "DESTROY" << std::endl;
+    std::cout << "DESTROY LOGGER: " << _name << "." << std::endl;
 }
 
 Logger* Logger::Singleton(std::string name)
@@ -144,7 +144,7 @@ void Logger::log(const Level& level, std::string message) const
     {
         LogRecord* lr = new LogRecord(level, message, _name);
         //  push lr sur un stream histoire que la personne en fasse ce qu'elle veut
-        if (onRecord != nullptr)
+        if (onRecord != NULL)
         {
             onRecord(lr);
             delete lr;

@@ -1,4 +1,4 @@
-#include	"TcpSock.hh"
+#include	"TcpSock.h"
 
 TcpSock::TcpSock()
 	:Sock(SOCK_STREAM)
@@ -20,7 +20,7 @@ TcpSock::TcpSock(int port, std::string ip)
 TcpSock::TcpSock(TcpSock const & main)
 	:Sock()
 {
-	int sinsize = sizeof this->_sin;
+	socklen_t sinsize = sizeof this->_sin;
 
 	if ((this->_fd = accept(main.getFd(), reinterpret_cast<SOCKADDR*>(&this->_sin), &sinsize)) == INVALID_SOCKET)
 		(*new SMaker << "Accept failure.").failWithL();
@@ -52,7 +52,7 @@ void		TcpSock::cConnect(int port, std::string ip)
 	this->_sin.sin_port = htons(port);
 //	this->_sin.sin_addr = *(IN_ADDR *)gethostbyname("www.sog.com")->h_addr;
 	this->_sin.sin_addr.s_addr = inet_addr(ip.c_str());
-	if (connect(this->_fd, reinterpret_cast<SOCKADDR*>(&this->_sin), sizeof SOCKADDR) == SOCKET_ERROR)
+	if (connect(this->_fd, reinterpret_cast<SOCKADDR*>(&this->_sin), sizeof(SOCKADDR)) == SOCKET_ERROR)
 		(*new SMaker << "Connect failure.").failWithL();
 }
 
@@ -70,7 +70,7 @@ bool		TcpSock::upToDate() const
 
 bool		TcpSock::write()
 {
-	int		r;
+	ssize_t		r;
 
 	if ((r = send(this->_fd, this->_oBuff.c_str(), this->_oBuff.length(), 0)) == -1)
 		return false;
@@ -80,7 +80,7 @@ bool		TcpSock::write()
 
 bool		TcpSock::read()
 {
-	int		r;
+	ssize_t		r;
 	size_t	p;
 
 	if ((r = recv(this->_fd, this->_buff, BUFF_SIZE - 1, 0)) == -1)

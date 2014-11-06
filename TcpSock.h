@@ -6,7 +6,7 @@
 #ifndef		__TCPSOCK_HH__
 # define	__TCPSOCK_HH__
 
-# include	"Sock.hh"
+# include	"Sock.h"
 
 # define	BUFF_SIZE	1024
 # define	LINE_SEP	"\r\n"

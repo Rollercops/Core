@@ -32,7 +32,7 @@ DateTime::~DateTime()
 
 std::string DateTime::yearToString() const
 {
-    return (std::to_string(year));
+    return (number_to_string(year));
 }
 
 std::string DateTime::monthToString() const
@@ -65,10 +65,18 @@ std::string DateTime::toString() const
     return (yearToString() + "/" + monthToString() + "/" + dayToString() + " " + hoursToString() + ":" + minutesToString() + ":" + secondsToString());
 }
 
+template <typename T>
+std::string number_to_string(T number)
+{
+    std::ostringstream ss;
+    ss << number;
+    return (ss.str());
+}
+
 std::string addNumberBefore(int minSize, int numberToAddBefore, int number)
 {
-    std::string before = std::to_string(numberToAddBefore);
-    std::string base = std::to_string(number);
+    std::string before = number_to_string(numberToAddBefore);
+    std::string base = number_to_string(number);
     
     while (base.length() < minSize)
     {

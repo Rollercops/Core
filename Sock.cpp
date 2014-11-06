@@ -1,4 +1,4 @@
-#include	"Sock.hh"
+#include	"Sock.h"
 
 Sock::Sock(int type)
 {

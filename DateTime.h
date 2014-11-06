@@ -12,7 +12,7 @@
 #include <iostream>
 #include <ctime>
 #include <string>
-
+#include <sstream>
 
 class DateTime {
 private:
@@ -21,7 +21,7 @@ private:
 public:
     DateTime();
     ~DateTime();
-    
+
     int year;
     int month;
     int day;
@@ -40,6 +40,8 @@ public:
     std::string toString() const;
 };
 
+template <typename T>
+std::string number_to_string(T number);
 std::string addNumberBefore(int minSize, int numberToAddBefore, int number);
 
 #endif /* defined(__logging__DateTime__) */

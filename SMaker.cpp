@@ -1,4 +1,4 @@
-#include	"SMaker.hpp"
+#include	"SMaker.h"
 
 bool		SMaker::_debug(false);
 std::string	SMaker::_eol("");
