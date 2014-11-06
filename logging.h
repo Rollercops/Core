@@ -72,11 +72,13 @@ private:
     
     Logger();
     Logger(std::string name);
-    
+    ~Logger();
+
 public:
     static Logger* root;
     static std::map<std::string, Logger*> loggers;
     static Logger* Singleton(std::string name = "");
+    static void destroyAllLogger();
     
     void (*onRecord)(LogRecord* logRecord);
     Level level;

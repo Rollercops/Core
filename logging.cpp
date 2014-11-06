@@ -89,6 +89,11 @@ Logger::Logger(std::string name) : _name(name), level(Level::INFO)
 
 }
 
+Logger::~Logger()
+{
+    std::cout << "DESTROY" << std::endl;
+}
+
 Logger* Logger::Singleton(std::string name)
 {
     std::map<std::string, Logger*>::iterator it = Logger::loggers.find(name);
@@ -104,6 +109,16 @@ Logger* Logger::Singleton(std::string name)
     return (Logger::loggers[name]);
 }
 
+void Logger::destroyAllLogger()
+{
+    for (std::map<std::string, Logger*>::iterator it = Logger::loggers.begin(); it != Logger::loggers.end(); ++it)
+    {
+        delete it->second;
+    }
+    Logger::loggers.clear();
+}
+
+
 bool Logger::isLoggable(const Level& lvl) const
 {
     return (level.value <= lvl.value);
@@ -118,10 +133,12 @@ void Logger::log(const Level& level, std::string message) const
         if (onRecord != nullptr)
         {
             onRecord(lr);
+            delete lr;
         }
         else
         {
             std::cout << lr->toString() << std::endl;
+            delete lr;
         }
     }
 }
