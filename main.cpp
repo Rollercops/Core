@@ -8,6 +8,8 @@ int	main()
 
   testSocket.connectByHostname(hostname);
   Logger::destroyAllLogger();
+
+  //test
   // IMPORTANT: use Level::destroyAllLogger() to clean.
   return (0);
 }
