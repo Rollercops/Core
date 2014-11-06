@@ -41,7 +41,7 @@ public:
 };
 
 template <typename T>
-std::string number_to_string(T number);
+std::string numberToString(T number);
 std::string addNumberBefore(int minSize, int numberToAddBefore, int number);
 
 #endif /* defined(__logging__DateTime__) */

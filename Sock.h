@@ -7,8 +7,13 @@
 # define	__SOCK_HH__
 
 # include	"libs.h"
+# include	"logging.h"
 
 typedef		int SOCKET;
+typedef		struct sockaddr_in	SOCKADDR_IN;
+typedef		struct sockaddr		SOCKADDR;
+typedef		struct in_addr		IN_ADDR;
+
 
 # if	defined(_WIN32) || defined(_WIN64)
 #  include	<winsock2.h>
@@ -23,14 +28,11 @@ typedef		int SOCKET;
 #  define	INVALID_SOCKET	-1
 #  define	SOCKET_ERROR	-1
 #  define	closesocket(s)	close(s)
-typedef		struct sockaddr_in	SOCKADDR_IN;
-typedef		struct sockaddr		SOCKADDR;
-typedef		struct in_addr		IN_ADDR;
 // use -lws_32 compilation option
 # endif
 
-# define	SOCK_IP		"127.0.0.1"
-# define	SOCK_PORT	4242
+# define	SOCK_IP		"www.error500.fr/"
+# define	SOCK_PORT	80
 
 class		Sock
 {
@@ -49,6 +51,8 @@ public:
 	static void	init();
 	static void	end();
 	SOCKET	getFd() const;
+	int	connectByHostname(const char *hostname);
+	
 	//send
 	//recv
 	//bind (?)
