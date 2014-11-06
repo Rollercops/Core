@@ -57,6 +57,7 @@ public:
     const std::string message;
     const std::string loggerName;
     
+    //  ajoute la Date et l'heure
     const DateTime now;
     
     LogRecord(const Level& level, std::string message, std::string loggerName);

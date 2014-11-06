@@ -19,6 +19,7 @@ DateTime::DateTime()
     year = timeinfo.tm_year + 1900;
     month = timeinfo.tm_mon + 1;
     day = timeinfo.tm_mday;
+    
     hours = timeinfo.tm_hour;
     minutes = timeinfo.tm_min;
     seconds = timeinfo.tm_sec;

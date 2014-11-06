@@ -91,7 +91,7 @@ Logger::Logger(std::string name) : _name(name), level(Level::INFO)
 
 Logger::~Logger()
 {
-    
+    std::cout << "DESTROY LOGGER: " << _name << "." << std::endl;
 }
 
 Logger* Logger::Singleton(std::string name)
@@ -122,6 +122,7 @@ bool Logger::destroyLogger(std::string name)
     }
     return (false);
 }
+
 
 void Logger::destroyAllLogger()
 {
@@ -165,6 +166,7 @@ std::string Logger::toString() const
 {
     return (getName());
 }
+
 
 LogRecord::LogRecord(const Level& level, std::string message, std::string loggerName) : level(level), message(message), loggerName(loggerName), now(DateTime())
 {
