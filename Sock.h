@@ -52,7 +52,7 @@ public:
 	static void	end();
 	SOCKET	getFd() const;
 	int	connectByHostname(const char *hostname);
-	
+	int	authenticationCheck(char *answer);
 	//send
 	//recv
 	//bind (?)
