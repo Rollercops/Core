@@ -50,6 +50,20 @@ public:
     int value;
 };
 
+class LogRecord {
+    
+public:
+    Level level;
+    const std::string message;
+    const std::string loggerName;
+    
+    //  ajoute la Date et l'heure
+    const DateTime now;
+    
+    LogRecord(const Level& level, std::string message, std::string loggerName);
+    
+    std::string toString() const;
+};
 
 class Logger {
     
@@ -64,7 +78,7 @@ public:
     static std::map<std::string, Logger*> loggers;
     static Logger* Singleton(std::string name = "");
     
-    void (*onRecord)(std::string message);
+    void (*onRecord)(LogRecord* logRecord);
     Level level;
     
     bool isLoggable(const Level& level) const;
@@ -74,22 +88,9 @@ public:
     std::string toString() const;
 };
 
-void writerDebug(std::string message);
+void writerDebug(LogRecord* logRecord);
 
-class LogRecord {
 
-public:
-    Level level;
-    const std::string message;
-    const std::string loggerName;
-    
-    //  ajoute la Date et l'heure
-    const DateTime now;
-    
-    LogRecord(const Level& level, std::string message, std::string loggerName);
-    
-    std::string toString() const;
-};
 
 
 #endif /* defined(__logging__logging__) */

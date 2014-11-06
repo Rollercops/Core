@@ -117,7 +117,7 @@ void Logger::log(const Level& level, std::string message) const
         //  push lr sur un stream histoire que la personne en fasse ce qu'elle veut
         if (onRecord != nullptr)
         {
-            onRecord(lr->toString());
+            onRecord(lr);
         }
         else
         {
@@ -147,7 +147,7 @@ std::string LogRecord::toString() const
     return ("[" + now.toString() + "]" + "[" + level.name + "]" + loggerName + ": " + message);
 }
 
-void writerDebug(std::string message)
+void writerDebug(LogRecord *logRecord)
 {
-    std::cout << message << std::endl;
+    std::cout << logRecord->toString() << std::endl;
 }
