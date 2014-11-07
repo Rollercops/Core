@@ -6,19 +6,18 @@
 //  Copyright (c) 2014 kevin segaud. All rights reserved.
 //
 
-#ifndef __logging__logging__
-#define __logging__logging__
+#ifndef ROLLERCOPS_LOGGING_H_
+#define ROLLERCOPS_LOGGING_H_
 
-#include <iostream>
+#include <stdio.h>
+
 #include <string>
-#include <list>
 #include <map>
 
-#include "DateTime.h"
+#include "./DateTime.h"
 
 class Level {
-
-public:
+ public:
     static const Level ALL;
     static const Level OFF;
     static const Level FINEST;
@@ -33,7 +32,7 @@ public:
     Level(std::string name, int value);
     Level(const Level& level);
     ~Level();
-    
+
     bool operator==(const Level& level) const;
     bool operator>=(const Level& level) const;
     bool operator>(const Level& level) const;
@@ -41,59 +40,54 @@ public:
     bool operator<(const Level& level) const;
 
     void operator=(const Level& level);
-    
+
     int compareTo(const Level& level) const;
-    
+
     std::string toString();
-    
+
     std::string name;
     int value;
 };
 
 class LogRecord {
-    
-public:
+ public:
     Level level;
     const std::string message;
     const std::string loggerName;
-    
-    //  ajoute la Date et l'heure
+
     const DateTime now;
-    
+
     LogRecord(const Level& level, std::string message, std::string loggerName);
-    
+
     std::string toString() const;
 };
 
 class Logger {
-    
-private:
+ private:
     const std::string _name;
-    
+
     Logger();
-    Logger(std::string name);
+    explicit Logger(std::string name);
     ~Logger();
 
-public:
+ public:
     static Logger* root;
     static std::map<std::string, Logger*> loggers;
     static Logger* Singleton(std::string name = "");
+    static bool write(std::string message, bool addRc = true);
     static bool destroyLogger(std::string name);
     static void destroyAllLogger();
-    
+
     void (*onRecord)(LogRecord* logRecord);
     Level level;
-    
+
     bool isLoggable(const Level& level) const;
-    void log(const Level& level, std::string message) const;
-    
+    void log(const Level& level, std::string message, bool addRc = true) const;
+
     std::string getName() const;
     std::string toString() const;
 };
 
 void writerDebug(LogRecord* logRecord);
 
-
-
-
-#endif /* defined(__logging__logging__) */
+#endif  // ROLLERCOPS_LOGGING_H_

@@ -1,0 +1,279 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		91C45F4D1A0D09E40014120F /* DateTime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91C45F3D1A0D09E40014120F /* DateTime.cpp */; };
+		91C45F4E1A0D09E40014120F /* Logging.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91C45F401A0D09E40014120F /* Logging.cpp */; };
+		91C45F4F1A0D09E40014120F /* test_main_kevin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91C45F421A0D09E40014120F /* test_main_kevin.cpp */; };
+		91C45F501A0D09E40014120F /* Number.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91C45F431A0D09E40014120F /* Number.cpp */; };
+		91C45F531A0D09E40014120F /* Socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91C45F491A0D09E40014120F /* Socket.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		916D08CA1A0A4D4900E87D45 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		916D08CC1A0A4D4900E87D45 /* Rollercops */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Rollercops; sourceTree = BUILT_PRODUCTS_DIR; };
+		91C45F3D1A0D09E40014120F /* DateTime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DateTime.cpp; path = rollercops/DateTime.cpp; sourceTree = SOURCE_ROOT; };
+		91C45F3E1A0D09E40014120F /* DateTime.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = DateTime.h; path = rollercops/DateTime.h; sourceTree = SOURCE_ROOT; };
+		91C45F401A0D09E40014120F /* Logging.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Logging.cpp; path = rollercops/Logging.cpp; sourceTree = SOURCE_ROOT; };
+		91C45F411A0D09E40014120F /* Logging.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = Logging.h; path = rollercops/Logging.h; sourceTree = SOURCE_ROOT; };
+		91C45F421A0D09E40014120F /* test_main_kevin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = test_main_kevin.cpp; path = rollercops/test_main_kevin.cpp; sourceTree = SOURCE_ROOT; };
+		91C45F431A0D09E40014120F /* Number.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Number.cpp; path = rollercops/Number.cpp; sourceTree = SOURCE_ROOT; };
+		91C45F441A0D09E40014120F /* Number.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = Number.h; path = rollercops/Number.h; sourceTree = SOURCE_ROOT; };
+		91C45F491A0D09E40014120F /* Socket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Socket.cpp; path = rollercops/Socket.cpp; sourceTree = SOURCE_ROOT; };
+		91C45F4A1A0D09E40014120F /* Socket.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = Socket.h; path = rollercops/Socket.h; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		916D08C91A0A4D4900E87D45 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		916D08C31A0A4D4900E87D45 = {
+			isa = PBXGroup;
+			children = (
+				916D08CE1A0A4D4900E87D45 /* rollercops */,
+				916D08CD1A0A4D4900E87D45 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		916D08CD1A0A4D4900E87D45 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				916D08CC1A0A4D4900E87D45 /* Rollercops */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		916D08CE1A0A4D4900E87D45 /* rollercops */ = {
+			isa = PBXGroup;
+			children = (
+				91C1BB371A0D71AA003AD918 /* Core */,
+				91C45F421A0D09E40014120F /* test_main_kevin.cpp */,
+			);
+			name = rollercops;
+			path = logging;
+			sourceTree = "<group>";
+		};
+		91C1BB371A0D71AA003AD918 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				91C45F3D1A0D09E40014120F /* DateTime.cpp */,
+				91C45F3E1A0D09E40014120F /* DateTime.h */,
+				91C45F401A0D09E40014120F /* Logging.cpp */,
+				91C45F411A0D09E40014120F /* Logging.h */,
+				91C45F431A0D09E40014120F /* Number.cpp */,
+				91C45F441A0D09E40014120F /* Number.h */,
+				91C45F491A0D09E40014120F /* Socket.cpp */,
+				91C45F4A1A0D09E40014120F /* Socket.h */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		916D08CB1A0A4D4900E87D45 /* Rollercops */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 916D08D31A0A4D4900E87D45 /* Build configuration list for PBXNativeTarget "Rollercops" */;
+			buildPhases = (
+				916D08C81A0A4D4900E87D45 /* Sources */,
+				916D08C91A0A4D4900E87D45 /* Frameworks */,
+				916D08CA1A0A4D4900E87D45 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Rollercops;
+			productName = logging;
+			productReference = 916D08CC1A0A4D4900E87D45 /* Rollercops */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		916D08C41A0A4D4900E87D45 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "kevin segaud";
+				TargetAttributes = {
+					916D08CB1A0A4D4900E87D45 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+				};
+			};
+			buildConfigurationList = 916D08C71A0A4D4900E87D45 /* Build configuration list for PBXProject "Rollercops" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 916D08C31A0A4D4900E87D45;
+			productRefGroup = 916D08CD1A0A4D4900E87D45 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				916D08CB1A0A4D4900E87D45 /* Rollercops */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		916D08C81A0A4D4900E87D45 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91C45F501A0D09E40014120F /* Number.cpp in Sources */,
+				91C45F531A0D09E40014120F /* Socket.cpp in Sources */,
+				91C45F4D1A0D09E40014120F /* DateTime.cpp in Sources */,
+				91C45F4E1A0D09E40014120F /* Logging.cpp in Sources */,
+				91C45F4F1A0D09E40014120F /* test_main_kevin.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		916D08D11A0A4D4900E87D45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		916D08D21A0A4D4900E87D45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		916D08D41A0A4D4900E87D45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++98";
+				CLANG_CXX_LIBRARY = "libstdc++";
+				GCC_VERSION = "";
+				PRODUCT_NAME = Rollercops;
+			};
+			name = Debug;
+		};
+		916D08D51A0A4D4900E87D45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++98";
+				CLANG_CXX_LIBRARY = "libstdc++";
+				GCC_VERSION = "";
+				PRODUCT_NAME = Rollercops;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		916D08C71A0A4D4900E87D45 /* Build configuration list for PBXProject "Rollercops" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				916D08D11A0A4D4900E87D45 /* Debug */,
+				916D08D21A0A4D4900E87D45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		916D08D31A0A4D4900E87D45 /* Build configuration list for PBXNativeTarget "Rollercops" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				916D08D41A0A4D4900E87D45 /* Debug */,
+				916D08D51A0A4D4900E87D45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 916D08C41A0A4D4900E87D45 /* Project object */;
+}
