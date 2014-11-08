@@ -17,7 +17,7 @@ std::string SocketError::toString() {
     return (getType() + ": " + _message);
 }
 
-Socket::Socket() {
+Socket::Socket() : RCObject("Socket") {
     _descriptor = socket(AF_INET , SOCK_STREAM , 0);
 
     if (_descriptor == -1) {
@@ -101,7 +101,7 @@ int Socket::read() {
 
 void Socket::listen(void (*onReceive)(const Socket& socket
                                       , std::string message),
-                    void (*onDone)(Socket& socket),
+                    void (*onDone)(const Socket& socket),
                     void (*onError)(const Socket& socket
                                     , SocketError error)) {
     _onReceive = onReceive;

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		91427B261A0E28CD00C4677C /* Error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91427B241A0E28CD00C4677C /* Error.cpp */; };
+		91AD80331A0E4BA400F8D99B /* RCObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91AD80311A0E4BA400F8D99B /* RCObject.cpp */; };
 		91C45F4D1A0D09E40014120F /* DateTime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91C45F3D1A0D09E40014120F /* DateTime.cpp */; };
 		91C45F4E1A0D09E40014120F /* Logging.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91C45F401A0D09E40014120F /* Logging.cpp */; };
 		91C45F4F1A0D09E40014120F /* test_main_kevin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91C45F421A0D09E40014120F /* test_main_kevin.cpp */; };
@@ -31,6 +32,8 @@
 		91427B241A0E28CD00C4677C /* Error.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Error.cpp; path = rollercops/Error.cpp; sourceTree = SOURCE_ROOT; };
 		91427B251A0E28CD00C4677C /* Error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Error.h; path = rollercops/Error.h; sourceTree = SOURCE_ROOT; };
 		916D08CC1A0A4D4900E87D45 /* Rollercops */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Rollercops; sourceTree = BUILT_PRODUCTS_DIR; };
+		91AD80311A0E4BA400F8D99B /* RCObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RCObject.cpp; path = rollercops/RCObject.cpp; sourceTree = SOURCE_ROOT; };
+		91AD80321A0E4BA400F8D99B /* RCObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCObject.h; path = rollercops/RCObject.h; sourceTree = SOURCE_ROOT; };
 		91C45F3D1A0D09E40014120F /* DateTime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DateTime.cpp; path = rollercops/DateTime.cpp; sourceTree = SOURCE_ROOT; };
 		91C45F3E1A0D09E40014120F /* DateTime.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = DateTime.h; path = rollercops/DateTime.h; sourceTree = SOURCE_ROOT; };
 		91C45F401A0D09E40014120F /* Logging.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Logging.cpp; path = rollercops/Logging.cpp; sourceTree = SOURCE_ROOT; };
@@ -92,6 +95,8 @@
 				91C45F4A1A0D09E40014120F /* Socket.h */,
 				91427B241A0E28CD00C4677C /* Error.cpp */,
 				91427B251A0E28CD00C4677C /* Error.h */,
+				91AD80311A0E4BA400F8D99B /* RCObject.cpp */,
+				91AD80321A0E4BA400F8D99B /* RCObject.h */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -158,6 +163,7 @@
 				91C45F4D1A0D09E40014120F /* DateTime.cpp in Sources */,
 				91C45F4E1A0D09E40014120F /* Logging.cpp in Sources */,
 				91C45F4F1A0D09E40014120F /* test_main_kevin.cpp in Sources */,
+				91AD80331A0E4BA400F8D99B /* RCObject.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,7 +250,9 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++98";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				GCC_VERSION = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = Rollercops;
+				SDKROOT = macosx10.9;
 			};
 			name = Debug;
 		};
@@ -254,7 +262,9 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++98";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				GCC_VERSION = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = Rollercops;
+				SDKROOT = macosx10.9;
 			};
 			name = Release;
 		};

@@ -11,15 +11,12 @@
 
 #include <string>
 
-class Error {
-private:
-    const std::string _type;
-    
-public:
+#include "./RCObject.h"
+
+class Error : protected RCObject {
+ public:
     explicit Error(std::string type);
-    
-    virtual const std::string getType() const;
-    
+
     virtual const std::string toString() const;
 };
 

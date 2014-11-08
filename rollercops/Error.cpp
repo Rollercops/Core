@@ -6,13 +6,11 @@
 //  Copyright (c) 2014 kevin segaud. All rights reserved.
 //
 
+#include <string>
+
 #include "Error.h"
 
-Error::Error(std::string type) : _type(type) {}
-
-const std::string Error::getType() const {
-    return (_type);
-}
+Error::Error(std::string type) : RCObject("Error") {}
 
 const std::string Error::toString() const {
     return (_type);

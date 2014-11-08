@@ -20,7 +20,7 @@
 # include "./Error.h"
 # include "./DateTime.h"
 
-class Level {
+class Level : protected RCObject {
  public:
     static const Level ALL;
     static const Level OFF;
@@ -47,25 +47,25 @@ class Level {
 
     int compareTo(const Level& level) const;
 
-    std::string toString();
+    const std::string toString() const;
 
     std::string name;
     int value;
 };
 
-class LogRecord {
+class LogRecord : protected RCObject {
     const Level _level;
     const std::string _message;
     const std::string _loggerName;
     const DateTime _now;
-    
-public:
+
+ public:
     LogRecord(const Level& level, std::string message, std::string loggerName);
 
-    std::string toString() const;
+    const std::string toString() const;
 };
 
-class Logger {
+class Logger : protected RCObject {
  private:
     const std::string _name;
 
@@ -90,11 +90,11 @@ class Logger {
     bool isLoggable(const Level& level) const;
     void log(const Level& level, std::string message, bool addRc = true) const;
 
-    std::string getName() const;
+    const std::string getName() const;
 # if defined(__linux) || defined(__unix) || defined(__APPLE__)
     pthread_mutex_t getMutex();
 #endif
-    std::string toString() const;
+    const std::string toString() const;
 };
 
 void writerDebug(LogRecord* logRecord);
