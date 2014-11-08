@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 kevin segaud. All rights reserved.
 //
 
+#include <string>
+
 #include "RCObject.h"
 
 RCObject::RCObject(std::string type) : _type(type) {}

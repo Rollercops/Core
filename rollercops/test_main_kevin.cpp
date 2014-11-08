@@ -1,7 +1,7 @@
-#include "Logging.h"
-#include "Socket.h"
-#include "DateTime.h"
-#include "number.h"
+#include "./Logging.h"
+#include "./Socket.h"
+#include "./DateTime.h"
+#include "./number.h"
 
 void onReceive(const Socket& socket, std::string message) {
     socket.write("Hello server\n");

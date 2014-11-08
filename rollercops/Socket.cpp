@@ -101,7 +101,7 @@ int Socket::read() {
 
 void Socket::listen(void (*onReceive)(const Socket& socket
                                       , std::string message),
-                    void (*onDone)(Socket& socket),
+                    void (*onDone)(const Socket& socket),
                     void (*onError)(const Socket& socket
                                     , SocketError error)) {
     _onReceive = onReceive;

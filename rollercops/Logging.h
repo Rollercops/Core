@@ -58,8 +58,8 @@ class LogRecord : protected RCObject {
     const std::string _message;
     const std::string _loggerName;
     const DateTime _now;
-    
-public:
+
+ public:
     LogRecord(const Level& level, std::string message, std::string loggerName);
 
     const std::string toString() const;

@@ -22,9 +22,11 @@ const Level Level::WARNING = Level("WARNING", 900);
 const Level Level::SEVERE = Level("SEVERE", 1000);
 const Level Level::SHOUT = Level("SHOUT", 1200);
 
-Level::Level(std::string name, int value) : RCObject("Level"), name(name), value(value) {}
+Level::Level(std::string name, int value)
+: RCObject("Level"), name(name), value(value) {}
 
-Level::Level(const Level& level) : RCObject("Level"), name(level.name), value(level.value) {}
+Level::Level(const Level& level)
+: RCObject("Level"), name(level.name), value(level.value) {}
 
 Level::~Level() {}
 
@@ -67,9 +69,11 @@ Logger* Logger::root = Logger::Singleton();
 pthread_mutex_t Logger::lock;
 #endif
 
-Logger::Logger() : RCObject("Logger"), _name(""), level(Level::INFO) {}
+Logger::Logger()
+: RCObject("Logger"), _name(""), level(Level::INFO) {}
 
-Logger::Logger(std::string name) : RCObject("Logger"), _name(name), level(Level::INFO) {}
+Logger::Logger(std::string name)
+: RCObject("Logger"), _name(name), level(Level::INFO) {}
 
 Logger::~Logger() {}
 

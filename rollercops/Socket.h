@@ -54,7 +54,7 @@ class Socket : protected RCObject {
 
     void (*_onReceive)(const Socket& socket, std::string message);
     void (*_onError)(const Socket& socket, SocketError error);
-    void (*_onDone)(Socket& socket);
+    void (*_onDone)(const Socket& socket);
 
     Socket();
 
@@ -66,7 +66,7 @@ class Socket : protected RCObject {
 
     bool write(std::string message) const;
     void listen(void (*onReceive)(const Socket& socket, std::string message),
-                void (*onClose)(Socket& socket) = NULL,
+                void (*onClose)(const Socket& socket) = NULL,
                 void (*onError)(const Socket& socket,
                                 SocketError error) = NULL);
     void close();
