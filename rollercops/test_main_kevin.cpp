@@ -1,3 +1,11 @@
+//
+//  main.cpp
+//  main
+//
+//  Created by kevin segaud on 11/6/14.
+//  Copyright (c) 2014 kevin segaud. All rights reserved.
+//
+
 #include "./Logging.h"
 #include "./Socket.h"
 #include "./DateTime.h"
@@ -8,7 +16,7 @@ void onReceive(const Socket& socket, std::string message) {
     Logger::root->log(Level::INFO, message, false);
 }
 
-void onDone(Socket& socket) {
+void onDone(const Socket& socket) {
     Logger::root->log(Level::INFO, "Server close the socket");
 }
 

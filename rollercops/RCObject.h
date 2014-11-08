@@ -6,22 +6,22 @@
 //  Copyright (c) 2014 kevin segaud. All rights reserved.
 //
 
-#ifndef ROLLERCOPS_RCObject_H_
-#define ROLLERCOPS_RCObject_H_
+#ifndef ROLLERCOPS_RCOBJECT_H_
+#define ROLLERCOPS_RCOBJECT_H_
 
 #include <string>
 
 class RCObject {
  protected:
     std::string _type;
-    
+
  public:
     explicit RCObject(std::string type);
     ~RCObject();
-    
+
     const std::string getType() const;
-    
+
     virtual const std::string toString() const;
 };
 
-#endif  // ROLLERCOPS_RCObject_H_
+#endif  // ROLLERCOPS_RCOBJECT_H_
