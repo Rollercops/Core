@@ -14,10 +14,9 @@
 #include "./RCObject.h"
 
 class Error : protected RCObject {
-    
-public:
+ public:
     explicit Error(std::string type);
-    
+
     virtual const std::string toString() const;
 };
 
