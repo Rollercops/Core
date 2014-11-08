@@ -7,35 +7,43 @@
 //
 
 #include <string>
+#include <iostream>
 
 #include "./Logging.h"
 #include "./Socket.h"
 #include "./DateTime.h"
 #include "./number.h"
+#include "./ServerSocket.h"
 
-void onReceive(const Socket& socket, std::string message) {
+int nbClient = 0;
+
+void socketOnReceive(Socket socket, std::string message) {
     socket.write("Hello server\n");
     Logger::root->log(Level::INFO, message, false);
 }
 
-void onDone(const Socket& socket) {
-    Logger::root->log(Level::INFO, "Server close the socket");
+void socketOnDone(Socket socket) {
+    nbClient--;
+    Logger::root->log(Level::INFO, "un client c'est deco: " + Number<int>(socket.getFd()).toString());
+    Logger::root->log(Level::INFO, "nous avons maintenant: " + Number<int>(nbClient).toString());
 }
 
-int main() {
+void trySocker() {
     try {
-        Socket socket = Socket::connect("127.0.0.1", Number<int>(8888));
+        Socket* socket = Socket::connect("127.0.0.1", Number<int>(8888));
         Logger::root->log(Level::INFO, "We are connected");
-        socket.listen(onReceive, onDone);
+        socket->listen(socketOnReceive, socketOnDone);
 
-        socket.write("C'est bien asynchrone\n");
+        socket->write("C'est bien asynchrone\n");
 
-        socket.wait();
-        socket.destroy();
+        socket->wait();
+        socket->destroy();
     } catch (SocketError se) {
         Logger::root->log(Level::SEVERE, se.toString());
     }
+}
 
+void tryNumber() {
     Number<int> myInt(987667);
     Logger::root->log(Level::INFO, myInt.toString());
 
@@ -45,6 +53,45 @@ int main() {
     myInt = myFloat.toInt();
 
     Logger::root->log(Level::INFO, myInt.toString());
+}
+
+void serverSocketOnReceive(const ServerSocket& ss, Socket* socket) {
+    nbClient++;
+    Logger::root->log(Level::INFO, "nous avons maintenant: " + Number<int>(nbClient).toString());
+    socket->listen(socketOnReceive, socketOnDone);
+}
+
+void exitConsole() {
+    std::string  exit;
+    std::cin >> exit;
+    if (exit != "shutdown") {
+        exitConsole();
+    }
+}
+
+void tryServerSocket() {
+    try {
+        ServerSocket ss = ServerSocket::bind("127.0.0.1", Number<int>(8888));
+        ss.listen(serverSocketOnReceive);
+        Logger::root->log(Level::INFO, "c'est bien asynchrone");
+
+        exitConsole();
+        ss.shutdown();
+        Logger::root->log(Level::SHOUT, "Server shutdown");
+        
+        ss.wait();
+
+        ss.shutdown();
+        ss.close();
+        ss.destroy();
+
+    } catch (ServerSocketError sse) {
+        Logger::root->log(Level::SEVERE, sse.toString());
+    }
+}
+
+int main() {
+    tryServerSocket();
 
     //  IMPORTANT: pensez a detruire tous les loggers grace a destroyAllLogger
     Logger::destroyAllLogger();

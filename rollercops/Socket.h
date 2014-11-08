@@ -1,6 +1,6 @@
 //
 //  Socket.h
-//  logging
+//  Rollercops
 //
 //  Created by kevin segaud on 11/6/14.
 //  Copyright (c) 2014 kevin segaud. All rights reserved.
@@ -11,7 +11,6 @@
 
 #include <string>
 
-#include "./Number.h"
 #include "./Logging.h"
 #include "./Error.h"
 #include "./RCObject.h"
@@ -48,33 +47,38 @@ class Socket : protected RCObject {
     int _port;
     bool _v6Only;
     bool _open;
+#if defined(__linux) || defined(__unix) || defined(__APPLE__)
     pthread_t _thread;
+#endif
 
     Socket* _ptr;
 
-    void (*_onReceive)(const Socket& socket, std::string message);
-    void (*_onError)(const Socket& socket, SocketError error);
-    void (*_onDone)(const Socket& socket);
+    void (*_onReceive)(Socket socket, std::string message);
+    void (*_onError)(Socket socket, SocketError error);
+    void (*_onDone)(Socket socket);
 
     Socket();
+    Socket(int descriptor, std::string address, int port);
 
  public:
-    static Socket& connect(std::string address,
+    static Socket* connect(std::string address,
                            Number<int> port,
                            bool v6Only = false);
+    static Socket* fromServerSocket(int fd, std::string address, int port);
+
     ~Socket();
 
-    bool write(std::string message) const;
-    void listen(void (*onReceive)(const Socket& socket, std::string message),
-                void (*onClose)(const Socket& socket) = NULL,
-                void (*onError)(const Socket& socket,
+    bool write(std::string message);
+    void listen(void (*onReceive)(Socket socket, std::string message),
+                void (*onClose)(Socket socket) = NULL,
+                void (*onError)(Socket socket,
                                 SocketError error) = NULL);
     void close();
     int read();
     void wait();
     void destroy();
 
-    void sendOnError(SocketError error) const;
+    void sendOnError(SocketError error);
     void sendOnClose();
     bool isOpen() const;
     int getFd() const;

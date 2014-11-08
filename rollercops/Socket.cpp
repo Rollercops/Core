@@ -1,6 +1,6 @@
 //
 //  Socket.cpp
-//  logging
+//  Rollercops
 //
 //  Created by kevin segaud on 11/6/14.
 //  Copyright (c) 2014 kevin segaud. All rights reserved.
@@ -25,9 +25,15 @@ Socket::Socket() : RCObject("Socket") {
     }
 }
 
+Socket::Socket(int descriptor, std::string address, int port) : RCObject("Socket") {
+    _descriptor = descriptor;
+    _address = address;
+    _port = port;
+}
+
 Socket::~Socket() {}
 
-Socket& Socket::connect(std::string address, Number<int> port, bool v6Only) {
+Socket* Socket::connect(std::string address, Number<int> port, bool v6Only) {
     Socket* socket = new Socket();
     socket->_address = address;
     socket->_port = port.getNumber();
@@ -35,6 +41,7 @@ Socket& Socket::connect(std::string address, Number<int> port, bool v6Only) {
 
     struct sockaddr_in server;
 
+    bzero(&server, sizeof(server));
     server.sin_addr.s_addr = inet_addr(socket->_address.c_str());
     server.sin_family = AF_INET;
     server.sin_port = htons(socket->_port);
@@ -45,12 +52,21 @@ Socket& Socket::connect(std::string address, Number<int> port, bool v6Only) {
     if (ret_connect == -1) {
         throw SocketError("connect function return something < 0");
     }
+    bzero(&server, sizeof(server));
     socket->_open = true;
     socket->_ptr = socket;
-    return (*socket);
+    return (socket);
 }
 
-bool Socket::write(std::string message) const {
+Socket* Socket::fromServerSocket(int fd, std::string address, int port) {
+    Socket* socket = new Socket(fd, address, port);
+    socket->_ptr = socket;
+    socket->_open = true;
+    return (socket);
+}
+
+
+bool Socket::write(std::string message) {
     ssize_t nbCharSend;
     nbCharSend = send(_descriptor, message.c_str(), message.length(), 0);
     if (nbCharSend == -1) {
@@ -62,7 +78,7 @@ bool Socket::write(std::string message) const {
     return (false);
 }
 
-void Socket::sendOnError(SocketError error) const {
+void Socket::sendOnError(SocketError error) {
     if (_onError != NULL) {
         _onError(*this, error);
     } else {
@@ -71,11 +87,10 @@ void Socket::sendOnError(SocketError error) const {
 }
 
 void Socket::sendOnClose() {
+    close();
     if (_onDone != NULL) {
-        close();
         _onDone(*this);
     } else {
-        close();
         Logger::root->log(Level::INFO, "server close the connexion");
     }
 }
@@ -99,30 +114,30 @@ int Socket::read() {
     return (1);
 }
 
-void Socket::listen(void (*onReceive)(const Socket& socket
-                                      , std::string message),
-                    void (*onDone)(const Socket& socket),
-                    void (*onError)(const Socket& socket
-                                    , SocketError error)) {
+void Socket::listen(void (*onReceive)(Socket socket,
+                                      std::string message),
+                    void (*onDone)(Socket socket),
+                    void (*onError)(Socket socket,
+                                    SocketError error)) {
     _onReceive = onReceive;
     _onError = onError;
     _onDone = onDone;
+#if defined(__linux) || defined(__unix) || defined(__APPLE__)
     int ret_thread;
-# if defined(__linux) || defined(__unix) || defined(__APPLE__)
     ret_thread = pthread_create(&_thread, NULL,  threadRead, this);
     if (ret_thread < 0) {
         sendOnError(SocketError("pthread failed, try without thread"));
         threadRead(this);
     }
-# else
+#else
     threadRead(this);
-# endif
+#endif
 }
 
 void Socket::wait() {
-# if defined(__linux) || defined(__unix) || defined(__APPLE__)
+#if defined(__linux) || defined(__unix) || defined(__APPLE__)
     pthread_join(_thread, NULL);
-# endif
+#endif
 }
 
 void Socket::destroy() {
@@ -131,6 +146,7 @@ void Socket::destroy() {
 
 void Socket::close() {
     _onReceive = NULL;
+    _onDone = NULL;
     _onError = NULL;
     _open = false;
     ::close(_descriptor);
@@ -144,7 +160,7 @@ int Socket::getFd() const {
     return (_descriptor);
 }
 
-void *threadRead(void* data) {
+void* threadRead(void* data) {
     Socket* socket = reinterpret_cast<Socket*>(data);
     fd_set read_fd_set, active_fd_set;
     struct timeval tv;
@@ -166,6 +182,7 @@ void *threadRead(void* data) {
                 }
             }
         }
+        socket->destroy();
     }
     catch (SocketError error) {
         socket->sendOnError(error);

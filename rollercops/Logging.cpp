@@ -1,6 +1,6 @@
 //
 //  logging.cpp
-//  logging
+//  Rollercops
 //
 //  Created by kevin segaud on 11/5/14.
 //  Copyright (c) 2014 kevin segaud. All rights reserved.
