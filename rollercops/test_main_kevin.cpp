@@ -1,4 +1,4 @@
-#include "logging.h"
+#include "Logging.h"
 #include "Socket.h"
 #include "DateTime.h"
 #include "number.h"
@@ -28,8 +28,6 @@ int	main() {
 
     Number<int> myInt(987667);
     Logger::root->log(Level::INFO, myInt.toString());
-
-
     
     Number<float> myFloat(1.5);
     Logger::root->log(Level::INFO, myFloat.toString());
@@ -38,7 +36,7 @@ int	main() {
     
     Logger::root->log(Level::INFO, myInt.toString());
     
-    //  IMPORTANT: use Level::destroyAllLogger() to clean.
+    //  IMPORTANT: pensez a detruire tous les loggers grace a destroyAllLogger
     Logger::destroyAllLogger();
     return (0);
 }
