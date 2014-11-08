@@ -8,8 +8,12 @@
 
 #include "Error.h"
 
-Error::Error(std::string type) : type(type) {}
+Error::Error(std::string type) : _type(type) {}
 
-std::string Error::toString() {
-    return (type);
+const std::string Error::getType() const {
+    return (_type);
+}
+
+const std::string Error::toString() const {
+    return (_type);
 }

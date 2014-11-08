@@ -12,13 +12,15 @@
 #include <string>
 
 class Error {
-protected:
-    const std::string type;
+private:
+    const std::string _type;
     
 public:
     explicit Error(std::string type);
     
-    virtual std::string toString();
+    virtual const std::string getType() const;
+    
+    virtual const std::string toString() const;
 };
 
 #endif  // ROLLERCOPS_ERROR_H_

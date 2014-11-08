@@ -14,7 +14,7 @@ SocketError::SocketError(std::string message)
     : Error("SocketError"), _message(message) {}
 
 std::string SocketError::toString() {
-    return (type + ": " + _message);
+    return (getType() + ": " + _message);
 }
 
 Socket::Socket() {

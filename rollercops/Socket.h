@@ -31,7 +31,7 @@
 // use -lws_32 compilation option
 # endif
 
-class SocketError : protected Error {
+class SocketError : public Error {
  private:
     std::string _message;
 
