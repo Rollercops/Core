@@ -37,7 +37,9 @@ ServerSocket ServerSocket::bind(std::string address, Number<int> port) {
     server_addr.sin_family = AF_INET;
     server_addr.sin_addr.s_addr = INADDR_ANY;
     server_addr.sin_port = htons(hs->_port);
-    if (::bind(hs->_desriptor, (struct sockaddr *) &server_addr, sizeof(server_addr)) == -1) {
+    if (::bind(hs->_desriptor,
+               (struct sockaddr *) &server_addr,
+               sizeof(server_addr)) == -1) {
         throw ServerSocketError("bind return -1");
     }
     hs->_ptr = hs;
@@ -53,8 +55,10 @@ void ServerSocket::sendOnError(ServerSocketError sse) const {
     }
 }
 
-void ServerSocket::listen(void (*onConnexion)(const ServerSocket& ss, Socket* socket),
-                          void (*onError)(const ServerSocket& ss, const ServerSocketError sse)) {
+void ServerSocket::listen(void (*onConnexion)(const ServerSocket& ss,
+                                              Socket* socket),
+                          void (*onError)(const ServerSocket& ss,
+                                          const ServerSocketError sse)) {
     _onConnexion = onConnexion;
     _onError = onError;
 
@@ -106,21 +110,32 @@ void* ServerSocket::threadRead(void* data) {
     while (ss->_isOpen) {
         bzero(&client_addr, sizeof(client_addr));
         bzero(buf, sizeof(buf));
-        client_descriptor = accept(ss->getDescriptor(), (struct sockaddr *)&client_addr, &client_len);
+        client_descriptor = accept(ss->getDescriptor(),
+                                   (struct sockaddr *)&client_addr,
+                                   &client_len);
         if (client_descriptor == -1) {
             ss->sendOnError(ServerSocketError("accept return -1"));
         } else if (ss->_isOpen) {
-            if (getpeername(client_descriptor, (struct sockaddr *)&client_addr, &client_len) == -1) {
+            if (getpeername(client_descriptor,
+                            (struct sockaddr *)&client_addr,
+                            &client_len) == -1) {
                 ss->sendOnError(ServerSocketError("getpeername return -1"));
             } else {
                 inet_ntop(AF_INET, &client_addr.sin_addr, buf, sizeof buf);
             }
             Number<int>* fd = new Number<int>(client_descriptor);
-            Number<int>* client_port = new Number<int>(ntohs(client_addr.sin_port));
-            Logger::root->log(Level::INFO, "nouveau client avec address: " + std::string(buf) + " et le port: " + client_port->toString() + " et fd: " + fd->toString(), true);
+            Number<int>* client_port;
+            client_port = new Number<int>(ntohs(client_addr.sin_port));
+            Logger::root->log(Level::INFO,
+                              "nouveau client avec address: " +
+                              std::string(buf) + " et le port: " +
+                              client_port->toString() + " et fd: " +
+                              fd->toString(), true);
             delete fd;
             delete client_port;
-            Socket* socket = Socket::fromServerSocket(client_descriptor, std::string(buf), client_port->getNumber());
+            Socket* socket = Socket::fromServerSocket(client_descriptor,
+                                                      std::string(buf),
+                                                      client_port->getNumber());
             ss->_onConnexion(*ss, socket);
         } else {
             ::close(client_descriptor);

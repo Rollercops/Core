@@ -29,10 +29,10 @@
 # include "./Number.h"
 
 class ServerSocketError : protected Error {
-private:
+ private:
     std::string _message;
-    
-public:
+
+ public:
     explicit ServerSocketError(std::string message);
     virtual const std::string toString();
 };
@@ -63,8 +63,10 @@ class ServerSocket : protected RCObject {
 
     int getDescriptor() const;
 
-    void listen(void (*onConnexion)(const ServerSocket& ss, Socket* socket),
-                void (*onError)(const ServerSocket& ss, const ServerSocketError sse) = NULL);
+    void listen(void (*onConnexion)(const ServerSocket& ss,
+                                    Socket* socket),
+                void (*onError)(const ServerSocket& ss,
+                                const ServerSocketError sse) = NULL);
 
     void wait();
 

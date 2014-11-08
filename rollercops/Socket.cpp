@@ -25,7 +25,8 @@ Socket::Socket() : RCObject("Socket") {
     }
 }
 
-Socket::Socket(int descriptor, std::string address, int port) : RCObject("Socket") {
+Socket::Socket(int descriptor, std::string address, int port)
+: RCObject("Socket") {
     _descriptor = descriptor;
     _address = address;
     _port = port;

@@ -6,8 +6,9 @@
 //  Copyright (c) 2014 kevin segaud. All rights reserved.
 //
 
+#include <stdio.h>
+
 #include <string>
-#include <iostream>
 
 #include "./Logging.h"
 #include "./Socket.h"
@@ -24,8 +25,12 @@ void socketOnReceive(Socket socket, std::string message) {
 
 void socketOnDone(Socket socket) {
     nbClient--;
-    Logger::root->log(Level::INFO, "un client c'est deco: " + Number<int>(socket.getFd()).toString());
-    Logger::root->log(Level::INFO, "nous avons maintenant: " + Number<int>(nbClient).toString());
+    Logger::root->log(Level::INFO,
+                      "un client c'est deco: " +
+                      Number<int>(socket.getFd()).toString());
+    Logger::root->log(Level::INFO,
+                      "nous avons maintenant: " +
+                      Number<int>(nbClient).toString());
 }
 
 void trySocker() {
@@ -57,14 +62,17 @@ void tryNumber() {
 
 void serverSocketOnReceive(const ServerSocket& ss, Socket* socket) {
     nbClient++;
-    Logger::root->log(Level::INFO, "nous avons maintenant: " + Number<int>(nbClient).toString());
+    Logger::root->log(Level::INFO,
+                      "nous avons maintenant: " +
+                      Number<int>(nbClient).toString());
     socket->listen(socketOnReceive, socketOnDone);
 }
 
 void exitConsole() {
-    std::string  exit;
-    std::cin >> exit;
-    if (exit != "shutdown") {
+    char buf[512];
+    read(0, buf, sizeof(buf));
+    std::string  exit(buf);
+    if (exit != "shutdown\n") {
         exitConsole();
     }
 }
@@ -73,18 +81,17 @@ void tryServerSocket() {
     try {
         ServerSocket ss = ServerSocket::bind("127.0.0.1", Number<int>(8888));
         ss.listen(serverSocketOnReceive);
-        Logger::root->log(Level::INFO, "c'est bien asynchrone");
+        Logger::root->log(Level::INFO,
+                          "Pour quitter taper shutdown puis Entrer");
 
         exitConsole();
-        ss.shutdown();
         Logger::root->log(Level::SHOUT, "Server shutdown");
-        
+
         ss.wait();
 
         ss.shutdown();
         ss.close();
         ss.destroy();
-
     } catch (ServerSocketError sse) {
         Logger::root->log(Level::SEVERE, sse.toString());
     }
