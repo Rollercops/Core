@@ -14,12 +14,7 @@
 # if defined(__linux) || defined(__unix) || defined(__APPLE__)
 #  include <sys/types.h>
 #  include <sys/socket.h>
-#  include <netinet/in.h>
 #  include <arpa/inet.h>
-#  include <sys/unistd.h>
-#  include <sys/fcntl.h>
-#  include <errno.h>
-#  include <netdb.h> /* gethostbyname */
 #  include <pthread.h>
 # endif
 

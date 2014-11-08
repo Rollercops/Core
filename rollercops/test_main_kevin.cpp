@@ -87,9 +87,9 @@ void tryServerSocket() {
         exitConsole();
         Logger::root->log(Level::SHOUT, "Server shutdown");
 
+        ss.shutdown();
         ss.wait();
 
-        ss.shutdown();
         ss.close();
         ss.destroy();
     } catch (ServerSocketError sse) {
