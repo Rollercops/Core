@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 kevin segaud. All rights reserved.
 //
 
+#include <string>
+
 #include "./Logging.h"
 #include "./Socket.h"
 #include "./DateTime.h"
@@ -20,7 +22,7 @@ void onDone(const Socket& socket) {
     Logger::root->log(Level::INFO, "Server close the socket");
 }
 
-int	main() {
+int main() {
     try {
         Socket socket = Socket::connect("127.0.0.1", Number<int>(8888));
         Logger::root->log(Level::INFO, "We are connected");
@@ -36,14 +38,14 @@ int	main() {
 
     Number<int> myInt(987667);
     Logger::root->log(Level::INFO, myInt.toString());
-    
+
     Number<float> myFloat(1.5);
     Logger::root->log(Level::INFO, myFloat.toString());
 
     myInt = myFloat.toInt();
-    
+
     Logger::root->log(Level::INFO, myInt.toString());
-    
+
     //  IMPORTANT: pensez a detruire tous les loggers grace a destroyAllLogger
     Logger::destroyAllLogger();
     return (0);
