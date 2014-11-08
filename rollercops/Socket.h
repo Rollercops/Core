@@ -14,6 +14,7 @@
 #include "./Number.h"
 #include "./Logging.h"
 #include "./Error.h"
+#include "./RCObject.h"
 
 # if defined(_WIN32) || defined(_WIN64)
 #  include <winsock2.h>
@@ -31,7 +32,7 @@
 // use -lws_32 compilation option
 # endif
 
-class SocketError : public Error {
+class SocketError : protected Error {
  private:
     std::string _message;
 
@@ -40,7 +41,7 @@ class SocketError : public Error {
     virtual std::string toString();
 };
 
-class Socket {
+class Socket : protected RCObject {
  private:
     int _descriptor;
     std::string _address;

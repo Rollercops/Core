@@ -22,9 +22,9 @@ const Level Level::WARNING = Level("WARNING", 900);
 const Level Level::SEVERE = Level("SEVERE", 1000);
 const Level Level::SHOUT = Level("SHOUT", 1200);
 
-Level::Level(std::string name, int value) : name(name), value(value) {}
+Level::Level(std::string name, int value) : RCObject("Level"), name(name), value(value) {}
 
-Level::Level(const Level& level) : name(level.name), value(level.value) {}
+Level::Level(const Level& level) : RCObject("Level"), name(level.name), value(level.value) {}
 
 Level::~Level() {}
 
@@ -57,7 +57,7 @@ int Level::compareTo(const Level& level) const {
     return (value - level.value);
 }
 
-std::string Level::toString() {
+const std::string Level::toString() const {
     return (name);
 }
 
@@ -67,9 +67,9 @@ Logger* Logger::root = Logger::Singleton();
 pthread_mutex_t Logger::lock;
 #endif
 
-Logger::Logger() : _name(""), level(Level::INFO) {}
+Logger::Logger() : RCObject("Logger"), _name(""), level(Level::INFO) {}
 
-Logger::Logger(std::string name) : _name(name), level(Level::INFO) {}
+Logger::Logger(std::string name) : RCObject("Logger"), _name(name), level(Level::INFO) {}
 
 Logger::~Logger() {}
 
@@ -154,23 +154,24 @@ pthread_mutex_t Logger::getMutex() {
 }
 #endif
 
-std::string Logger::getName() const {
+const std::string Logger::getName() const {
     return (_name);
 }
 
-std::string Logger::toString() const {
+const std::string Logger::toString() const {
     return (getName());
 }
 
 LogRecord::LogRecord(const Level& level,
                      std::string message,
                      std::string loggerName)
-: _level(level),
+: RCObject("LogRecord"),
+_level(level),
 _message(message),
 _loggerName(loggerName),
 _now(DateTime()) {}
 
-std::string LogRecord::toString() const {
+const std::string LogRecord::toString() const {
     return ("[" + _now.toString() + "]"
             + "[" + _level.name + "]"
             + _loggerName + ": "

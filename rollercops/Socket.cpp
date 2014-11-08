@@ -17,7 +17,7 @@ std::string SocketError::toString() {
     return (getType() + ": " + _message);
 }
 
-Socket::Socket() {
+Socket::Socket() : RCObject("Socket") {
     _descriptor = socket(AF_INET , SOCK_STREAM , 0);
 
     if (_descriptor == -1) {

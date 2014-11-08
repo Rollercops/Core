@@ -12,13 +12,15 @@
 #include <string>
 #include <sstream>
 
+#include "./RCObject.h"
+
 template<class T>
-class Number {
+class Number : protected RCObject {
  private:
     T _number;
 
  public:
-    explicit Number(T number) : _number(number) {}
+    explicit Number(T number) : RCObject("Number"), _number(number) {}
 
     Number() {}
 
@@ -26,7 +28,7 @@ class Number {
         return (_number);
     }
 
-    std::string toString() const {
+    std::string const toString() const {
         std::ostringstream ss;
         ss << _number;
         return (ss.str());
@@ -77,7 +79,7 @@ class Number <int> {
         return (static_cast<double>(_number));
     }
 
-    std::string toString() const {
+    std::string const toString() const {
         std::ostringstream ss;
         ss << _number;
         return (ss.str());
@@ -126,7 +128,7 @@ class Number <float> {
         return (static_cast<double>(_number));
     }
 
-    std::string toString() const {
+    std::string const toString() const {
         std::ostringstream ss;
         ss << _number;
         return (ss.str());
@@ -175,7 +177,7 @@ class Number <double> {
         return (static_cast<float>(_number));
     }
 
-    std::string toString() const {
+    std::string const toString() const {
         std::ostringstream ss;
         ss << _number;
         return (ss.str());
