@@ -9,12 +9,16 @@
 #ifndef ROLLERCOPS_LOGGING_H_
 #define ROLLERCOPS_LOGGING_H_
 
-#include <stdio.h>
+# if defined(__linux) || defined(__unix) || defined(__APPLE__)
+#  include <stdio.h>
+#  include <pthread.h>
+# endif
 
-#include <string>
-#include <map>
+# include <string>
+# include <map>
 
-#include "./DateTime.h"
+# include "./Error.h"
+# include "./DateTime.h"
 
 class Level {
  public:
@@ -71,9 +75,12 @@ class Logger {
 
  public:
     static Logger* root;
+# if defined(__linux) || defined(__unix) || defined(__APPLE__)
+    static pthread_mutex_t lock;
+#endif
     static std::map<std::string, Logger*> loggers;
     static Logger* Singleton(std::string name = "");
-    static bool write(std::string message, bool addRc = true);
+    static bool write(std::string message, bool addCr = true);
     static bool destroyLogger(std::string name);
     static void destroyAllLogger();
 
@@ -84,6 +91,9 @@ class Logger {
     void log(const Level& level, std::string message, bool addRc = true) const;
 
     std::string getName() const;
+# if defined(__linux) || defined(__unix) || defined(__APPLE__)
+    pthread_mutex_t getMutex();
+#endif
     std::string toString() const;
 };
 

@@ -63,6 +63,9 @@ std::string Level::toString() {
 
 std::map<std::string, Logger*> Logger::loggers;
 Logger* Logger::root = Logger::Singleton();
+# if defined(__linux) || defined(__unix) || defined(__APPLE__)
+pthread_mutex_t Logger::lock;
+#endif
 
 Logger::Logger() : _name(""), level(Level::INFO) {}
 
@@ -76,6 +79,13 @@ Logger* Logger::Singleton(std::string name) {
         return (it->second);
     } else {
         Logger *logger = new Logger(name);
+        if (Logger::loggers.empty()) {
+# if defined(__linux) || defined(__unix) || defined(__APPLE__)
+            if (pthread_mutex_init(&Logger::lock, NULL) != 0) {
+                throw Error("mutex init");
+            }
+#endif
+        }
         Logger::loggers[name] = logger;
     }
     return (Logger::loggers[name]);
@@ -99,6 +109,9 @@ void Logger::destroyAllLogger() {
         delete it->second;
     }
     Logger::loggers.clear();
+# if defined(__linux) || defined(__unix) || defined(__APPLE__)
+    pthread_mutex_destroy(&Logger::lock);
+#endif
 }
 
 bool Logger::isLoggable(const Level& lvl) const {
@@ -108,6 +121,9 @@ bool Logger::isLoggable(const Level& lvl) const {
 void Logger::log(const Level& level, std::string message, bool addRC) const {
     if (isLoggable(level)) {
         LogRecord* lr = new LogRecord(level, message, _name);
+# if defined(__linux) || defined(__unix) || defined(__APPLE__)
+        pthread_mutex_lock(&Logger::lock);
+#endif
         if (onRecord != NULL) {
             onRecord(lr);
             delete lr;
@@ -115,11 +131,14 @@ void Logger::log(const Level& level, std::string message, bool addRC) const {
             Logger::write(lr->toString(), addRC);
             delete lr;
         }
+# if defined(__linux) || defined(__unix) || defined(__APPLE__)
+        pthread_mutex_unlock(&Logger::lock);
+#endif
     }
 }
 
-bool Logger::write(std::string message, bool addRc) {
-    if (addRc) {
+bool Logger::write(std::string message, bool addCr) {
+    if (addCr) {
         message = message + "\n";
     }
     ssize_t ret = ::write(1, message.c_str(), message.length());
@@ -128,6 +147,12 @@ bool Logger::write(std::string message, bool addRc) {
     }
     return (true);
 }
+
+# if defined(__linux) || defined(__unix) || defined(__APPLE__)
+pthread_mutex_t Logger::getMutex() {
+    return (lock);
+}
+#endif
 
 std::string Logger::getName() const {
     return (_name);
