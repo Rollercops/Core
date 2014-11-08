@@ -244,7 +244,9 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++98";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				GCC_VERSION = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = Rollercops;
+				SDKROOT = macosx10.9;
 			};
 			name = Debug;
 		};
@@ -254,7 +256,9 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++98";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				GCC_VERSION = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = Rollercops;
+				SDKROOT = macosx10.9;
 			};
 			name = Release;
 		};
