@@ -37,11 +37,11 @@ class Number : protected RCObject {
     void operator=(Number<T>* number) {
         _number = number->getNumber();
     }
-    
+
     void operator=(Number<T> number) {
         _number = number.getNumber();
     }
-    
+
     void operator=(T number) {
         _number = number;
     }
@@ -88,11 +88,11 @@ class Number <int> {
     void operator=(Number<int>* number) {
         _number = number->getNumber();
     }
-    
+
     void operator=(Number<int> number) {
         _number = number.getNumber();
     }
-    
+
     void operator=(int number) {
         _number = number;
     }
@@ -137,11 +137,11 @@ class Number <float> {
     void operator=(Number<float>* number) {
         _number = number->getNumber();
     }
-    
+
     void operator=(Number<float> number) {
         _number = number.getNumber();
     }
-    
+
     void operator=(float number) {
         _number = number;
     }
@@ -186,11 +186,11 @@ class Number <double> {
     void operator=(Number<double>* number) {
         _number = number->getNumber();
     }
-    
+
     void operator=(Number<double> number) {
         _number = number.getNumber();
     }
-    
+
     void operator=(double number) {
         _number = number;
     }

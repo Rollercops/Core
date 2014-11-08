@@ -15,6 +15,7 @@
 
 class Error : protected RCObject {
  public:
+    Error();
     explicit Error(std::string type);
 
     virtual const std::string toString() const;

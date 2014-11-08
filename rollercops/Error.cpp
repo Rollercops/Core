@@ -10,7 +10,9 @@
 
 #include "Error.h"
 
-Error::Error(std::string type) : RCObject("Error") {}
+Error::Error() : RCObject("Error") {}
+
+Error::Error(std::string type) : RCObject(type) {}
 
 const std::string Error::toString() const {
     return (_type);
