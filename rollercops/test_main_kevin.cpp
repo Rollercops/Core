@@ -6,11 +6,8 @@
 //  Copyright (c) 2014 kevin segaud. All rights reserved.
 //
 
-<<<<<<< HEAD
-=======
 #include <string>
 
->>>>>>> develop
 #include "./Logging.h"
 #include "./Socket.h"
 #include "./DateTime.h"
