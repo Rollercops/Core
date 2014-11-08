@@ -17,7 +17,7 @@
 
 class DateTime {
  private:
-    time_t now;
+    time_t _date_time;
 
  public:
     DateTime();

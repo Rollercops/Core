@@ -11,11 +11,11 @@
 #include "./DateTime.h"
 
 DateTime::DateTime() {
-    time_t now;
+    time_t _date_time;
     struct tm timeinfo;
 
-    time(&now);
-    localtime_r(&now, &timeinfo);
+    time(&_date_time);
+    localtime_r(&_date_time, &timeinfo);
 
     year = new Num<int>(timeinfo.tm_year + 1900);
     month =  new Num<int>(timeinfo.tm_mon + 1);
