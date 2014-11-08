@@ -18,7 +18,7 @@
 # if defined(_WIN32) || defined(_WIN64)
 #  include <winsock2.h>
 #  pragma comment(lib, "Ws2_32.lib")
-# elif defined(linux) || defined(__APPLE__)
+# elif defined(__linux) || defined(__unix) || defined(__APPLE__)
 #  include <sys/types.h>
 #  include <sys/socket.h>
 #  include <netinet/in.h>
