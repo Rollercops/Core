@@ -17,13 +17,13 @@ DateTime::DateTime() {
     time(&_date_time);
     localtime_r(&_date_time, &timeinfo);
 
-    year = new Num<int>(timeinfo.tm_year + 1900);
-    month =  new Num<int>(timeinfo.tm_mon + 1);
-    day =  new Num<int>(timeinfo.tm_mday);
+    year = new Number<int>(timeinfo.tm_year + 1900);
+    month =  new Number<int>(timeinfo.tm_mon + 1);
+    day =  new Number<int>(timeinfo.tm_mday);
 
-    hours = new Num<int>(timeinfo.tm_hour);
-    minutes = new Num<int>(timeinfo.tm_min);
-    seconds = new Num<int>(timeinfo.tm_sec);
+    hours = new Number<int>(timeinfo.tm_hour);
+    minutes = new Number<int>(timeinfo.tm_min);
+    seconds = new Number<int>(timeinfo.tm_sec);
 }
 
 DateTime::~DateTime() {
@@ -37,14 +37,14 @@ DateTime::~DateTime() {
 
 std::string DateTime::toString() const {
     return (year->toString() + "/"
-            + month->addPrefix(new Num<int>(2),
-                               new Num<int>(0)) + "/"
-            + day->addPrefix(new Num<int>(2),
-                             new Num<int>(0)) + " "
-            + hours->addPrefix(new Num<int>(2),
-                               new Num<int>(0)) + ":"
-            + minutes->addPrefix(new Num<int>(2),
-                                 new Num<int>(0)) + ":"
-            + seconds->addPrefix(new Num<int>(2),
-                                 new Num<int>(0)));
+            + month->addPrefix(Number<int>(2),
+                               Number<int>(0)) + "/"
+            + day->addPrefix(Number<int>(2),
+                             Number<int>(0)) + " "
+            + hours->addPrefix(Number<int>(2),
+                               Number<int>(0)) + ":"
+            + minutes->addPrefix(Number<int>(2),
+                                 Number<int>(0)) + ":"
+            + seconds->addPrefix(Number<int>(2),
+                                 Number<int>(0)));
 }

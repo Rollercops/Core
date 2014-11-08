@@ -11,7 +11,9 @@
 
 #include <string>
 
-#include "./logging.h"
+#include "./Number.h"
+#include "./Logging.h"
+#include "./Error.h"
 
 # if defined(_WIN32) || defined(_WIN64)
 #  include <winsock2.h>
@@ -28,16 +30,6 @@
 #  define closesocket(s) close(s)
 // use -lws_32 compilation option
 # endif
-
-class Error {
- protected:
-    const std::string type;
-
- public:
-    explicit Error(std::string type);
-
-    virtual std::string toString();
-};
 
 class SocketError : protected Error {
  private:
@@ -61,19 +53,19 @@ class Socket {
 
     void (*_onReceive)(const Socket& socket, std::string message);
     void (*_onError)(const Socket& socket, SocketError error);
-    void (*_onDone)(Socket* socket);
+    void (*_onDone)(Socket& socket);
 
     Socket();
 
  public:
     static Socket& connect(std::string address,
-                           Num<int> port,
+                           Number<int> port,
                            bool v6Only = false);
     ~Socket();
 
     bool write(std::string message) const;
     void listen(void (*onReceive)(const Socket& socket, std::string message),
-                void (*onClose)(Socket* socket) = NULL,
+                void (*onClose)(Socket& socket) = NULL,
                 void (*onError)(const Socket& socket,
                                 SocketError error) = NULL);
     void close();

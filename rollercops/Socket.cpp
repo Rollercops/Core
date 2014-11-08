@@ -10,12 +10,6 @@
 
 #include "Socket.h"
 
-Error::Error(std::string type) : type(type) {}
-
-std::string Error::toString() {
-    return (type);
-}
-
 SocketError::SocketError(std::string message)
     : Error("SocketError"), _message(message) {}
 
@@ -33,7 +27,7 @@ Socket::Socket() {
 
 Socket::~Socket() {}
 
-Socket& Socket::connect(std::string address, Num<int> port, bool v6Only) {
+Socket& Socket::connect(std::string address, Number<int> port, bool v6Only) {
     Socket* socket = new Socket();
     socket->_address = address;
     socket->_port = port.getNumber();
@@ -78,7 +72,8 @@ void Socket::sendOnError(SocketError error) const {
 
 void Socket::sendOnClose() {
     if (_onDone != NULL) {
-        _onDone(this);
+        close();
+        _onDone(*this);
     } else {
         close();
         Logger::root->log(Level::INFO, "server close the connexion");
@@ -106,7 +101,7 @@ int Socket::read() {
 
 void Socket::listen(void (*onReceive)(const Socket& socket
                                       , std::string message),
-                    void (*onDone)(Socket* socket),
+                    void (*onDone)(Socket& socket),
                     void (*onError)(const Socket& socket
                                     , SocketError error)) {
     _onReceive = onReceive;

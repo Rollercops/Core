@@ -8,14 +8,13 @@ void onReceive(const Socket& socket, std::string message) {
     Logger::root->log(Level::INFO, message, false);
 }
 
-void onDone(Socket* socket) {
+void onDone(Socket& socket) {
     Logger::root->log(Level::INFO, "Server close the socket");
-    socket->close();
 }
 
 int	main() {
     try {
-        Socket socket = Socket::connect("127.0.0.1", Num<int>(8888));
+        Socket socket = Socket::connect("127.0.0.1", Number<int>(8888));
         Logger::root->log(Level::INFO, "We are connected");
         socket.listen(onReceive, onDone);
 
@@ -27,12 +26,18 @@ int	main() {
         Logger::root->log(Level::SEVERE, se.toString());
     }
 
-    Num<int> myInt(987667);
+    Number<int> myInt(987667);
     Logger::root->log(Level::INFO, myInt.toString());
 
-    Num<float> myFloat(1.5);
+
+    
+    Number<float> myFloat(1.5);
     Logger::root->log(Level::INFO, myFloat.toString());
 
+    myInt = myFloat.toInt();
+    
+    Logger::root->log(Level::INFO, myInt.toString());
+    
     //  IMPORTANT: use Level::destroyAllLogger() to clean.
     Logger::destroyAllLogger();
     return (0);

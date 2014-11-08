@@ -23,13 +23,13 @@ class DateTime {
     DateTime();
     ~DateTime();
 
-    Num<int>* year;
-    Num<int>* month;
-    Num<int>* day;
+    Number<int>* year;
+    Number<int>* month;
+    Number<int>* day;
 
-    Num<int>* hours;
-    Num<int>* minutes;
-    Num<int>* seconds;
+    Number<int>* hours;
+    Number<int>* minutes;
+    Number<int>* seconds;
 
     std::string toString() const;
 };

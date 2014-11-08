@@ -50,13 +50,12 @@ class Level {
 };
 
 class LogRecord {
- public:
-    Level level;
-    const std::string message;
-    const std::string loggerName;
-
-    const DateTime now;
-
+    const Level _level;
+    const std::string _message;
+    const std::string _loggerName;
+    const DateTime _now;
+    
+public:
     LogRecord(const Level& level, std::string message, std::string loggerName);
 
     std::string toString() const;

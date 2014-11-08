@@ -13,14 +13,14 @@
 #include <sstream>
 
 template<class T>
-class Num {
+class Number {
  private:
     T _number;
 
  public:
-    explicit Num(T number) : _number(number) {}
+    explicit Number(T number) : _number(number) {}
 
-    ~Num() {}
+    Number() {}
 
     T getNumber() const {
         return (_number);
@@ -32,12 +32,20 @@ class Num {
         return (ss.str());
     }
 
-    void operator=(Num<T>* number) {
+    void operator=(Number<T>* number) {
         _number = number->getNumber();
     }
+    
+    void operator=(Number<T> number) {
+        _number = number.getNumber();
+    }
+    
+    void operator=(T number) {
+        _number = number;
+    }
 
-    std::string addPrefix(Num<T>* minSize,
-                          Num<T>* numberToAddBefore) {
+    std::string addPrefix(Number<T>* minSize,
+                          Number<T>* numberToAddBefore) {
         std::string before = numberToAddBefore->toString();
         std::string base = toString();
 
@@ -51,11 +59,11 @@ class Num {
 };
 
 template<>
-class Num <int> {
+class Number <int> {
     int _number;
 
  public:
-    explicit Num(int number) : _number(number) {}
+    explicit Number(int number) : _number(number) {}
 
     int getNumber() const {
         return (_number);
@@ -75,30 +83,36 @@ class Num <int> {
         return (ss.str());
     }
 
-    void operator=(Num<int>* number) {
+    void operator=(Number<int>* number) {
         _number = number->getNumber();
     }
+    
+    void operator=(Number<int> number) {
+        _number = number.getNumber();
+    }
+    
+    void operator=(int number) {
+        _number = number;
+    }
 
-    std::string addPrefix(Num<int>* minSize,
-                          Num<int>* numberToAddBefore) {
-        std::string before = numberToAddBefore->toString();
+    std::string addPrefix(Number<int> minSize,
+                          Number<int> numberToAddBefore) {
+        std::string before = numberToAddBefore.toString();
         std::string base = toString();
 
-        while (base.length() < minSize->getNumber()) {
+        while (base.length() < minSize.getNumber()) {
             base = before + base;
         }
-        delete minSize;
-        delete numberToAddBefore;
         return (base);
     }
 };
 
 template<>
-class Num <float> {
+class Number <float> {
     float _number;
 
  public:
-    explicit Num(float number) : _number(number) {}
+    explicit Number(float number) : _number(number) {}
 
     float getNumber() const {
         return (_number);
@@ -118,30 +132,36 @@ class Num <float> {
         return (ss.str());
     }
 
-    void operator=(Num<float>* number) {
+    void operator=(Number<float>* number) {
         _number = number->getNumber();
     }
+    
+    void operator=(Number<float> number) {
+        _number = number.getNumber();
+    }
+    
+    void operator=(float number) {
+        _number = number;
+    }
 
-    std::string addPrefix(Num<float>* minSize,
-                          Num<float>* numberToAddBefore) {
-        std::string before = numberToAddBefore->toString();
+    std::string addPrefix(Number<float> minSize,
+                          Number<float> numberToAddBefore) {
+        std::string before = numberToAddBefore.toString();
         std::string base = toString();
 
-        while (base.length() < minSize->getNumber()) {
+        while (base.length() < minSize.getNumber()) {
             base = before + base;
         }
-        delete minSize;
-        delete numberToAddBefore;
         return (base);
     }
 };
 
 template<>
-class Num <double> {
+class Number <double> {
     double _number;
 
  public:
-    explicit Num(double number) : _number(number) {}
+    explicit Number(double number) : _number(number) {}
 
     double getNumber() const {
         return (_number);
@@ -161,31 +181,37 @@ class Num <double> {
         return (ss.str());
     }
 
-    void operator=(Num<double>* number) {
+    void operator=(Number<double>* number) {
         _number = number->getNumber();
     }
+    
+    void operator=(Number<double> number) {
+        _number = number.getNumber();
+    }
+    
+    void operator=(double number) {
+        _number = number;
+    }
 
-    std::string addPrefix(Num<double>* minSize,
-                          Num<double>* numberToAddBefore) {
-        std::string before = numberToAddBefore->toString();
+    std::string addPrefix(Number<double> minSize,
+                          Number<double> numberToAddBefore) {
+        std::string before = numberToAddBefore.toString();
         std::string base = toString();
 
-        while (base.length() < minSize->getNumber()) {
+        while (base.length() < minSize.getNumber()) {
             base = before + base;
         }
-        delete minSize;
-        delete numberToAddBefore;
         return (base);
     }
 };
 
 template<typename T>
-std::ostream& operator<<(std::ostream& os, Num<T>* number) {
+std::ostream& operator<<(std::ostream& os, Number<T>* number) {
     return (os << number->toString());
 }
 
 template<typename T>
-std::ostream& operator<<(std::ostream& os, Num<T>& number) {
+std::ostream& operator<<(std::ostream& os, Number<T>& number) {
     return (os << number.toString());
 }
 

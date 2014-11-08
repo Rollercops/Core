@@ -140,16 +140,16 @@ std::string Logger::toString() const {
 LogRecord::LogRecord(const Level& level,
                      std::string message,
                      std::string loggerName)
-: level(level),
-message(message),
-loggerName(loggerName),
-now(DateTime()) {}
+: _level(level),
+_message(message),
+_loggerName(loggerName),
+_now(DateTime()) {}
 
 std::string LogRecord::toString() const {
-    return ("[" + now.toString() + "]"
-            + "[" + level.name + "]"
-            + loggerName + ": "
-            + message);
+    return ("[" + _now.toString() + "]"
+            + "[" + _level.name + "]"
+            + _loggerName + ": "
+            + _message);
 }
 
 void writerDebug(LogRecord *logRecord) {
