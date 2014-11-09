@@ -18,6 +18,6 @@ const std::string RCObject::getType() const {
     return (_type);
 }
 
-const std::string RCObject::toString() const {
+std::string RCObject::toString() const {
     return (_type);
 }

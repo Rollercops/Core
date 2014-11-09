@@ -47,7 +47,7 @@ class Level : protected RCObject {
 
     int compareTo(const Level& level) const;
 
-    const std::string toString() const;
+    std::string toString() const;
 
     std::string name;
     int value;
@@ -62,7 +62,7 @@ class LogRecord : protected RCObject {
  public:
     LogRecord(const Level& level, std::string message, std::string loggerName);
 
-    const std::string toString() const;
+    std::string toString() const;
 };
 
 class Logger : protected RCObject {
@@ -94,7 +94,7 @@ class Logger : protected RCObject {
 # if defined(__linux) || defined(__unix) || defined(__APPLE__)
     pthread_mutex_t getMutex();
 #endif
-    const std::string toString() const;
+    std::string toString() const;
 };
 
 void writerDebug(LogRecord* logRecord);

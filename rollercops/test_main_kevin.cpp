@@ -16,6 +16,8 @@
 #include "./ServerSocket.h"
 #include "./TcpSocket.h"
 
+#include "./Num.h"
+
 int nbClient = 0;
 
 void socketOnReceive(TcpSocket socket, std::string message) {
@@ -102,7 +104,14 @@ void tryServerSocket() {
 }
 
 int main() {
+    
+    Int i(2);
+    Int j = Int(12);
+    Logger::root->log(Level::INFO, j.addPrefix(new Int(3), new Int(0)));
+    
     tryServerSocket();
+    
+    
 
     //  IMPORTANT: pensez a detruire tous les loggers grace a destroyAllLogger
     Logger::destroyAllLogger();

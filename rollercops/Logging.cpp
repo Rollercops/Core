@@ -59,7 +59,7 @@ int Level::compareTo(const Level& level) const {
     return (value - level.value);
 }
 
-const std::string Level::toString() const {
+std::string Level::toString() const {
     return (name);
 }
 
@@ -162,7 +162,7 @@ const std::string Logger::getName() const {
     return (_name);
 }
 
-const std::string Logger::toString() const {
+std::string Logger::toString() const {
     return (getName());
 }
 
@@ -175,7 +175,7 @@ _message(message),
 _loggerName(loggerName),
 _now(DateTime()) {}
 
-const std::string LogRecord::toString() const {
+std::string LogRecord::toString() const {
     return ("[" + _now.toString() + "]"
             + "[" + _level.name + "]"
             + _loggerName + ": "

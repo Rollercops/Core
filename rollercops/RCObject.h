@@ -21,7 +21,7 @@ class RCObject {
 
     const std::string getType() const;
 
-    virtual const std::string toString() const;
+    virtual std::string toString() const;
 };
 
 #endif  // ROLLERCOPS_RCOBJECT_H_

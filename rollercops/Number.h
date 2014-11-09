@@ -28,7 +28,7 @@ class Number : protected RCObject {
         return (_number);
     }
 
-    std::string const toString() const {
+    std::string toString() const {
         std::ostringstream ss;
         ss << _number;
         return (ss.str());

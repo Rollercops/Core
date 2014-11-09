@@ -13,7 +13,7 @@
 #include <string>
 #include <sstream>
 
-#include "./number.h"
+#include "./Number.h"
 
 class DateTime {
  private:

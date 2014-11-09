@@ -18,7 +18,7 @@ class Error : protected RCObject {
     Error();
     explicit Error(std::string type);
 
-    virtual const std::string toString() const;
+    virtual std::string toString() const;
 };
 
 #endif  // ROLLERCOPS_ERROR_H_

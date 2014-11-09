@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		91427B261A0E28CD00C4677C /* Error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91427B241A0E28CD00C4677C /* Error.cpp */; };
+		919F373C1A10150D00E607B7 /* Num.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 919F373A1A10150D00E607B7 /* Num.cpp */; };
 		91AD80331A0E4BA400F8D99B /* RCObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91AD80311A0E4BA400F8D99B /* RCObject.cpp */; };
 		91AD80361A0E60B100F8D99B /* ServerSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91AD80341A0E60B100F8D99B /* ServerSocket.cpp */; };
 		91C45F4D1A0D09E40014120F /* DateTime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91C45F3D1A0D09E40014120F /* DateTime.cpp */; };
@@ -33,6 +34,8 @@
 		91427B241A0E28CD00C4677C /* Error.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Error.cpp; path = rollercops/Error.cpp; sourceTree = SOURCE_ROOT; };
 		91427B251A0E28CD00C4677C /* Error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Error.h; path = rollercops/Error.h; sourceTree = SOURCE_ROOT; };
 		916D08CC1A0A4D4900E87D45 /* Rollercops */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Rollercops; sourceTree = BUILT_PRODUCTS_DIR; };
+		919F373A1A10150D00E607B7 /* Num.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Num.cpp; path = rollercops/Num.cpp; sourceTree = SOURCE_ROOT; };
+		919F373B1A10150D00E607B7 /* Num.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Num.h; path = rollercops/Num.h; sourceTree = SOURCE_ROOT; };
 		91AD80311A0E4BA400F8D99B /* RCObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RCObject.cpp; path = rollercops/RCObject.cpp; sourceTree = SOURCE_ROOT; };
 		91AD80321A0E4BA400F8D99B /* RCObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RCObject.h; path = rollercops/RCObject.h; sourceTree = SOURCE_ROOT; };
 		91AD80341A0E60B100F8D99B /* ServerSocket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ServerSocket.cpp; path = rollercops/ServerSocket.cpp; sourceTree = SOURCE_ROOT; };
@@ -102,6 +105,8 @@
 				91AD80321A0E4BA400F8D99B /* RCObject.h */,
 				91AD80341A0E60B100F8D99B /* ServerSocket.cpp */,
 				91AD80351A0E60B100F8D99B /* ServerSocket.h */,
+				919F373A1A10150D00E607B7 /* Num.cpp */,
+				919F373B1A10150D00E607B7 /* Num.h */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -162,6 +167,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				919F373C1A10150D00E607B7 /* Num.cpp in Sources */,
 				91427B261A0E28CD00C4677C /* Error.cpp in Sources */,
 				91C45F501A0D09E40014120F /* Number.cpp in Sources */,
 				91C45F531A0D09E40014120F /* TcpSocket.cpp in Sources */,
