@@ -54,17 +54,18 @@ class Int : public Num, protected RCObject {
 
     ~Int() {};
 
-    virtual int toInt() const {
+    int toInt() const {
         return (_number);
     }
-    virtual float toFloat() const {
+    float toFloat() const {
         return (static_cast<float>(_number));
     }
-    virtual double toDouble() const {
+    double toDouble() const {
         return (static_cast<double>(_number));
     }
 
-    virtual std::string toString() const {
+    
+    std::string toString() const {
         std::ostringstream ss;
         ss << _number;
         return (ss.str());
