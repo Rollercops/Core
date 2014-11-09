@@ -68,7 +68,7 @@ class Socket : protected RCObject {
 
     ~Socket();
 
-    bool write(std::string message);
+    int write(std::string message);
     void listen(void (*onReceive)(Socket socket, std::string message),
                 void (*onClose)(Socket socket) = NULL,
                 void (*onError)(Socket socket,
@@ -79,7 +79,7 @@ class Socket : protected RCObject {
     void destroy();
 
     void sendOnError(SocketError error);
-    void sendOnClose();
+    void sendOnDone();
     bool isOpen() const;
     int getFd() const;
 };

@@ -67,33 +67,37 @@ Socket* Socket::fromServerSocket(int fd, std::string address, int port) {
 }
 
 
-bool Socket::write(std::string message) {
+int Socket::write(std::string message) {
     ssize_t nbCharSend;
-    nbCharSend = send(_descriptor, message.c_str(), message.length(), 0);
-    if (nbCharSend == -1) {
-        sendOnError(SocketError("send function return -1"));
+    if (_open) {
+        nbCharSend = send(_descriptor, message.c_str(), message.length(), 0);
+        if (nbCharSend == -1) {
+            sendOnError(SocketError("send function return -1"));
+            return (-1);
+        }
+        else if (nbCharSend == strlen(message.c_str())) {
+            return (1);
+        }
     }
-    if (nbCharSend == strlen(message.c_str())) {
-        return (true);
-    }
-    return (false);
+    return (0);
 }
 
 void Socket::sendOnError(SocketError error) {
     if (_onError != NULL) {
         _onError(*this, error);
     } else {
-        Logger::root->log(Level::SEVERE, error.toString());
+        Logger::root->log(Level::WARNING, error.toString());
     }
 }
 
-void Socket::sendOnClose() {
+void Socket::sendOnDone() {
     close();
     if (_onDone != NULL) {
         _onDone(*this);
     } else {
         Logger::root->log(Level::INFO, "server close the connexion");
     }
+    destroy();
 }
 
 int Socket::read() {
@@ -106,7 +110,7 @@ int Socket::read() {
     if (nbytes == -1) {
         sendOnError(SocketError("read error"));
     } else if (nbytes == 0) {
-        sendOnClose();
+        sendOnDone();
     } else if (_onReceive != NULL) {
         _onReceive(*this, std::string(buf));
     } else {
@@ -142,13 +146,13 @@ void Socket::wait() {
 }
 
 void Socket::destroy() {
+    _onReceive = NULL;
+    _onDone = NULL;
+    _onError = NULL;
     delete _ptr;
 }
 
 void Socket::close() {
-    _onReceive = NULL;
-    _onDone = NULL;
-    _onError = NULL;
     _open = false;
     ::close(_descriptor);
 }
@@ -164,18 +168,15 @@ int Socket::getFd() const {
 void* threadRead(void* data) {
     Socket* socket = reinterpret_cast<Socket*>(data);
     fd_set read_fd_set, active_fd_set;
-    struct timeval tv;
-    tv.tv_sec = 1;
-    tv.tv_usec = 0;
     FD_ZERO(&read_fd_set);
     FD_SET(socket->getFd(), &read_fd_set);
     try {
         while (socket->isOpen()) {
             active_fd_set = read_fd_set;
             if (select(FD_SETSIZE, &active_fd_set, NULL, NULL, NULL) == -1) {
-                throw SocketError("select error");
+                socket->sendOnError(SocketError("select error"));
             }
-            if (FD_ISSET(socket->getFd(), &active_fd_set)) {
+            else if (FD_ISSET(socket->getFd(), &active_fd_set)) {
                 if (socket->read() == -1) {
                     socket->sendOnError(SocketError("read error"));
                 } else {
@@ -183,7 +184,6 @@ void* threadRead(void* data) {
                 }
             }
         }
-        socket->destroy();
     }
     catch (SocketError error) {
         socket->sendOnError(error);
