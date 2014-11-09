@@ -123,19 +123,16 @@ void* ServerSocket::threadRead(void* data) {
             } else {
                 inet_ntop(AF_INET, &client_addr.sin_addr, buf, sizeof buf);
             }
-            Number<int>* fd = new Number<int>(client_descriptor);
-            Number<int>* client_port;
-            client_port = new Number<int>(ntohs(client_addr.sin_port));
+            Number<int> fd = Number<int>(client_descriptor);
+            Number<int> client_port = Number<int>(ntohs(client_addr.sin_port));
             Logger::root->log(Level::INFO,
                               "nouveau client avec address: " +
                               std::string(buf) + " et le port: " +
-                              client_port->toString() + " et fd: " +
-                              fd->toString(), true);
-            delete fd;
-            delete client_port;
+                              client_port.toString() + " et fd: " +
+                              fd.toString(), true);
             Socket* socket = Socket::fromServerSocket(client_descriptor,
                                                       std::string(buf),
-                                                      client_port->getNumber());
+                                                      client_port.getNumber());
             ss->_onConnexion(*ss, socket);
         } else {
             ::close(client_descriptor);
