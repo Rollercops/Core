@@ -45,7 +45,6 @@ class Socket : protected RCObject {
     int _descriptor;
     std::string _address;
     int _port;
-    bool _v6Only;
     bool _open;
 #if defined(__linux) || defined(__unix) || defined(__APPLE__)
     pthread_t _thread;
@@ -60,12 +59,17 @@ class Socket : protected RCObject {
     Socket();
     Socket(int descriptor, std::string address, int port);
 
+    void _sendOnError(SocketError error);
+    void _sendOnDone();
+    int _read();
+
  public:
     static Socket* connect(std::string address,
-                           Number<int> port,
-                           bool v6Only = false);
+                           Number<int> port);
     static Socket* fromServerSocket(int fd, std::string address, int port);
+    static void *threadRead(void* socket);
 
+    
     ~Socket();
 
     int write(std::string message);
@@ -73,17 +77,13 @@ class Socket : protected RCObject {
                 void (*onClose)(Socket socket) = NULL,
                 void (*onError)(Socket socket,
                                 SocketError error) = NULL);
-    void close();
-    int read();
     void wait();
+    void close();
     void destroy();
 
-    void sendOnError(SocketError error);
-    void sendOnDone();
     bool isOpen() const;
     int getFd() const;
 };
 
-void *threadRead(void* socket);
 
 #endif  // ROLLERCOPS_SOCKET_H_
