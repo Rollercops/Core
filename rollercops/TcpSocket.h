@@ -1,19 +1,20 @@
 //
-//  Socket.h
+//  TcpSocket.h
 //  Rollercops
 //
 //  Created by kevin segaud on 11/6/14.
 //  Copyright (c) 2014 kevin segaud. All rights reserved.
 //
 
-#ifndef ROLLERCOPS_SOCKET_H_
-#define ROLLERCOPS_SOCKET_H_
+#ifndef ROLLERCOPS_TCPSOCKET_H_
+#define ROLLERCOPS_TCPSOCKET_H_
 
 #include <string>
 
 #include "./Logging.h"
 #include "./Error.h"
 #include "./RCObject.h"
+#include "./ServerSocket.h"
 
 # if defined(_WIN32) || defined(_WIN64)
 #  include <winsock2.h>
@@ -23,24 +24,24 @@
 #  include <sys/socket.h>
 #  include <netinet/in.h>
 #  include <arpa/inet.h>
+#  include <errno.h>
 #  include <unistd.h> /* close */
 #  include <netdb.h> /* gethostbyname */
 #  include <pthread.h>
-#  define INVALID_SOCKET -1
-#  define closesocket(s) close(s)
-// use -lws_32 compilation option
 # endif
 
-class SocketError : protected Error {
+class ServerSocket;
+
+class TcpSocketError : protected Error {
  private:
     std::string _message;
 
  public:
-    explicit SocketError(std::string message);
+    explicit TcpSocketError(std::string message);
     virtual std::string toString();
 };
 
-class Socket : protected RCObject {
+class TcpSocket : protected RCObject {
  private:
     int _descriptor;
     std::string _address;
@@ -50,33 +51,33 @@ class Socket : protected RCObject {
     pthread_t _thread;
 #endif
 
-    Socket* _ptr;
+    TcpSocket* _ptr;
+    ServerSocket* _parent;
 
-    void (*_onReceive)(Socket socket, std::string message);
-    void (*_onError)(Socket socket, SocketError error);
-    void (*_onDone)(Socket socket);
+    void (*_onReceive)(TcpSocket socket, std::string message);
+    void (*_onError)(TcpSocket socket, TcpSocketError error);
+    void (*_onDone)(TcpSocket socket);
 
-    Socket();
-    Socket(int descriptor, std::string address, int port);
+    TcpSocket();
+    TcpSocket(int descriptor, std::string address, int port);
 
-    void _sendOnError(SocketError error);
+    void _sendOnError(TcpSocketError error);
     void _sendOnDone();
     int _read();
 
  public:
-    static Socket* connect(std::string address,
-                           Number<int> port);
-    static Socket* fromServerSocket(int fd, std::string address, int port);
+    static TcpSocket* connect(std::string address, Number<int> port);
+    static TcpSocket* fromServerSocket(int fd, std::string address,
+                                       int port, ServerSocket* ss);
     static void *threadRead(void* socket);
-
     
-    ~Socket();
+    ~TcpSocket();
 
     int write(std::string message);
-    void listen(void (*onReceive)(Socket socket, std::string message),
-                void (*onClose)(Socket socket) = NULL,
-                void (*onError)(Socket socket,
-                                SocketError error) = NULL);
+    void listen(void (*onReceive)(TcpSocket socket, std::string message),
+                void (*onDone)(TcpSocket socket) = NULL,
+                void (*onError)(TcpSocket socket, TcpSocketError error) = NULL);
+
     void wait();
     void close();
     void destroy();
@@ -86,4 +87,4 @@ class Socket : protected RCObject {
 };
 
 
-#endif  // ROLLERCOPS_SOCKET_H_
+#endif  // ROLLERCOPS_TCPSOCKET_H_

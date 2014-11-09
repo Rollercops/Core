@@ -11,14 +11,14 @@
 #include <string>
 
 #include "./Logging.h"
-#include "./Socket.h"
 #include "./DateTime.h"
 #include "./number.h"
 #include "./ServerSocket.h"
+#include "./TcpSocket.h"
 
 int nbClient = 0;
 
-void socketOnReceive(Socket socket, std::string message) {
+void socketOnReceive(TcpSocket socket, std::string message) {
     Logger::root->log(Level::INFO, message, false);
     if (message == "ping\n") {
         socket.write("ping\n");
@@ -27,7 +27,7 @@ void socketOnReceive(Socket socket, std::string message) {
     }
 }
 
-void socketOnDone(Socket socket) {
+void socketOnDone(TcpSocket socket) {
     nbClient--;
     Logger::root->log(Level::INFO,
                       "un client c'est deco: " +
@@ -37,9 +37,9 @@ void socketOnDone(Socket socket) {
                       Number<int>(nbClient).toString());
 }
 
-void trySocker() {
+void trySocket() {
     try {
-        Socket* socket = Socket::connect("127.0.0.1", Number<int>(8888));
+        TcpSocket* socket = TcpSocket::connect("127.0.0.1", Number<int>(8888));
         Logger::root->log(Level::INFO, "We are connected");
         socket->listen(socketOnReceive, socketOnDone);
 
@@ -47,7 +47,7 @@ void trySocker() {
 
         socket->wait();
         socket->destroy();
-    } catch (SocketError se) {
+    } catch (TcpSocketError se) {
         Logger::root->log(Level::SEVERE, se.toString());
     }
 }
@@ -64,7 +64,7 @@ void tryNumber() {
     Logger::root->log(Level::INFO, myInt.toString());
 }
 
-void serverSocketOnReceive(const ServerSocket& ss, Socket* socket) {
+void serverSocketOnReceive(ServerSocket ss, TcpSocket* socket) {
     nbClient++;
     Logger::root->log(Level::INFO,
                       "nous avons maintenant: " +

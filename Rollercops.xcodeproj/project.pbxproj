@@ -14,7 +14,7 @@
 		91C45F4E1A0D09E40014120F /* Logging.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91C45F401A0D09E40014120F /* Logging.cpp */; };
 		91C45F4F1A0D09E40014120F /* test_main_kevin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91C45F421A0D09E40014120F /* test_main_kevin.cpp */; };
 		91C45F501A0D09E40014120F /* Number.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91C45F431A0D09E40014120F /* Number.cpp */; };
-		91C45F531A0D09E40014120F /* Socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91C45F491A0D09E40014120F /* Socket.cpp */; };
+		91C45F531A0D09E40014120F /* TcpSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91C45F491A0D09E40014120F /* TcpSocket.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -44,8 +44,8 @@
 		91C45F421A0D09E40014120F /* test_main_kevin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = test_main_kevin.cpp; path = rollercops/test_main_kevin.cpp; sourceTree = SOURCE_ROOT; };
 		91C45F431A0D09E40014120F /* Number.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Number.cpp; path = rollercops/Number.cpp; sourceTree = SOURCE_ROOT; };
 		91C45F441A0D09E40014120F /* Number.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = Number.h; path = rollercops/Number.h; sourceTree = SOURCE_ROOT; };
-		91C45F491A0D09E40014120F /* Socket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Socket.cpp; path = rollercops/Socket.cpp; sourceTree = SOURCE_ROOT; };
-		91C45F4A1A0D09E40014120F /* Socket.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = Socket.h; path = rollercops/Socket.h; sourceTree = SOURCE_ROOT; };
+		91C45F491A0D09E40014120F /* TcpSocket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TcpSocket.cpp; path = rollercops/TcpSocket.cpp; sourceTree = SOURCE_ROOT; };
+		91C45F4A1A0D09E40014120F /* TcpSocket.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = TcpSocket.h; path = rollercops/TcpSocket.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,8 +94,8 @@
 				91C45F411A0D09E40014120F /* Logging.h */,
 				91C45F431A0D09E40014120F /* Number.cpp */,
 				91C45F441A0D09E40014120F /* Number.h */,
-				91C45F491A0D09E40014120F /* Socket.cpp */,
-				91C45F4A1A0D09E40014120F /* Socket.h */,
+				91C45F491A0D09E40014120F /* TcpSocket.cpp */,
+				91C45F4A1A0D09E40014120F /* TcpSocket.h */,
 				91427B241A0E28CD00C4677C /* Error.cpp */,
 				91427B251A0E28CD00C4677C /* Error.h */,
 				91AD80311A0E4BA400F8D99B /* RCObject.cpp */,
@@ -164,7 +164,7 @@
 			files = (
 				91427B261A0E28CD00C4677C /* Error.cpp in Sources */,
 				91C45F501A0D09E40014120F /* Number.cpp in Sources */,
-				91C45F531A0D09E40014120F /* Socket.cpp in Sources */,
+				91C45F531A0D09E40014120F /* TcpSocket.cpp in Sources */,
 				91C45F4D1A0D09E40014120F /* DateTime.cpp in Sources */,
 				91C45F4E1A0D09E40014120F /* Logging.cpp in Sources */,
 				91C45F4F1A0D09E40014120F /* test_main_kevin.cpp in Sources */,

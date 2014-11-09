@@ -6,10 +6,12 @@
 //  Copyright (c) 2014 kevin segaud. All rights reserved.
 //
 
+#pragma once
 #ifndef ROLLERCOPS_SERVERSOCKET_H_
 #define ROLLERCOPS_SERVERSOCKET_H_
 
 # include <string>
+# include <vector>
 
 # if defined(__linux) || defined(__unix) || defined(__APPLE__)
 #  include <sys/types.h>
@@ -20,8 +22,11 @@
 
 # include "./RCObject.h"
 # include "./Error.h"
-# include "./Socket.h"
 # include "./Number.h"
+# include "./Logging.h"
+# include "./TcpSocket.h"
+
+class TcpSocket;
 
 class ServerSocketError : protected Error {
  private:
@@ -44,9 +49,11 @@ class ServerSocket : protected RCObject {
 #endif
 
     ServerSocket();
+    
+    std::vector<TcpSocket*> _clients;
 
-    void (*_onConnexion)(const ServerSocket& ss, Socket* socket);
-    void (*_onError)(const ServerSocket& ss, const ServerSocketError sse);
+    void (*_onConnexion)(ServerSocket ss, TcpSocket* socket);
+    void (*_onError)(ServerSocket ss, const ServerSocketError sse);
 
     void sendOnError(ServerSocketError sse) const;
 
@@ -58,13 +65,14 @@ class ServerSocket : protected RCObject {
 
     int getDescriptor() const;
 
-    void listen(void (*onConnexion)(const ServerSocket& ss,
-                                    Socket* socket),
-                void (*onError)(const ServerSocket& ss,
+    void listen(void (*onConnexion)(ServerSocket ss, TcpSocket* socket),
+                void (*onError)(ServerSocket ss,
                                 const ServerSocketError sse) = NULL);
 
     void wait();
 
+    void clientLeave(TcpSocket* socket);
+    
     void shutdown();
     void close();
     void destroy();

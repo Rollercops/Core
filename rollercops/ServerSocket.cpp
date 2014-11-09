@@ -55,9 +55,9 @@ void ServerSocket::sendOnError(ServerSocketError sse) const {
     }
 }
 
-void ServerSocket::listen(void (*onConnexion)(const ServerSocket& ss,
-                                              Socket* socket),
-                          void (*onError)(const ServerSocket& ss,
+void ServerSocket::listen(void (*onConnexion)(ServerSocket ss,
+                                              TcpSocket* socket),
+                          void (*onError)(ServerSocket ss,
                                           const ServerSocketError sse)) {
     _onConnexion = onConnexion;
     _onError = onError;
@@ -90,13 +90,29 @@ void ServerSocket::close() {
     ::close(_desriptor);
 }
 
+void ServerSocket::clientLeave(TcpSocket* socket) {
+    std::vector<TcpSocket*>::iterator tmp;
+    for (std::vector<TcpSocket*>::iterator it = _clients.begin(); it != _clients.end(); ++it) {
+        if (*it == socket) {
+            tmp = it;
+            break;
+        }
+    }
+    tmp = _clients.erase(tmp);
+}
+
 void ServerSocket::destroy() {
+    while (_clients.size() != 0) {
+        TcpSocket* socket = _clients.back();
+        _clients.pop_back();
+        socket->close();
+    }
     delete _ptr;
 }
 
 void ServerSocket::shutdown() {
     _isOpen = false;
-    Socket* socket = Socket::connect(_address, Number<int>(_port));
+    TcpSocket* socket = TcpSocket::connect(_address, Number<int>(_port));
     socket->close();
     socket->destroy();
 }
@@ -130,9 +146,10 @@ void* ServerSocket::threadRead(void* data) {
                               std::string(buf) + " et le port: " +
                               client_port.toString() + " et fd: " +
                               fd.toString(), true);
-            Socket* socket = Socket::fromServerSocket(client_descriptor,
-                                                      std::string(buf),
-                                                      client_port.getNumber());
+            TcpSocket* socket = TcpSocket::fromServerSocket(client_descriptor,
+                                                            std::string(buf),
+                                                            client_port.getNumber(), ss);
+            ss->_clients.push_back(socket);
             ss->_onConnexion(*ss, socket);
         } else {
             ::close(client_descriptor);
