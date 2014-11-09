@@ -19,8 +19,12 @@
 int nbClient = 0;
 
 void socketOnReceive(Socket socket, std::string message) {
-    socket.write("Hello server\n");
     Logger::root->log(Level::INFO, message, false);
+    if (message == "ping\n") {
+        socket.write("ping\n");
+    } else {
+        socket.write("pong\n");
+    }
 }
 
 void socketOnDone(Socket socket) {
