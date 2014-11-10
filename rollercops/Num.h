@@ -19,7 +19,6 @@
 
 class Num {
  public:
-    Num() {}
     virtual ~Num() {};
     virtual int toInt() const = 0;
     virtual double toDouble() const = 0;
