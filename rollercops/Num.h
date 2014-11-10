@@ -44,7 +44,7 @@ class Num : public INum, protected RCObject {
     virtual std::string toString() const  = 0;
     virtual std::string addPrefix(Num* minSize,
                                   Num* numberToAddBefore) const = 0;
-    
+
     virtual void operator=(Num* number) = 0;
     virtual void operator=(const Num& number) = 0;
     virtual void operator=(int number) = 0;
@@ -62,7 +62,9 @@ class Int : public Num {
 
  public:
     Int();
-    explicit Int(int number);
+    Int(int number);
+    Int(float number);
+    Int(double number);
     Int(const Num & number);
     explicit Int(Num* number);
     ~Int();

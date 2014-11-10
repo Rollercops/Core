@@ -104,9 +104,9 @@ void tryServerSocket() {
 }
 
 int main() {
-    Int i(2);
+    Int i = 2;
     Num* j = &i;
-    Logger::root->log(Level::INFO, j->addPrefix(new Int(3), new Int(0)));
+    Logger::root->log(Level::INFO, i.addPrefix(new Int(3), new Int(0)));
     tryServerSocket();
 
     //  IMPORTANT: pensez a detruire tous les loggers grace a destroyAllLogger

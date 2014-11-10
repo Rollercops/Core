@@ -14,6 +14,10 @@ Int::Int() : Num("Int"), _number(0) {}
 
 Int::Int(int number) : Num("Int"), _number(number) {}
 
+Int::Int(float number) : Num("Int"), _number(static_cast<int>(number)) {}
+
+Int::Int(double number) : Num("Int"), _number(static_cast<int>(number)) {}
+
 Int::Int(const Num & number) : Num("Int"), _number(number.toInt()) {}
 
 Int::Int(Num* number) : Num("Int"), _number(number->toInt()) {}
