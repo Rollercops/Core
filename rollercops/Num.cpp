@@ -27,9 +27,11 @@ Int::~Int() {}
 int Int::toInt() const {
     return (_number);
 }
+
 float Int::toFloat() const {
     return (static_cast<float>(_number));
 }
+
 double Int::toDouble() const {
     return (static_cast<double>(_number));
 }
