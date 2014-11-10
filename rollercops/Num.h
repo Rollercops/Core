@@ -16,8 +16,6 @@
 
 #include "./RCObject.h"
 
-class Num;
-
 class INum {
  public:
     virtual ~INum() {}
