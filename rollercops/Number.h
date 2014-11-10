@@ -213,7 +213,7 @@ std::ostream& operator<<(std::ostream& os, Number<T>* number) {
 }
 
 template<typename T>
-std::ostream& operator<<(std::ostream& os, Number<T>& number) {
+std::ostream& operator<<(std::ostream& os, const Number<T>& number) {
     return (os << number.toString());
 }
 
