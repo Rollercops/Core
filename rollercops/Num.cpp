@@ -18,11 +18,13 @@ Int::Int(float number) : RCObject("Int"), _number(static_cast<int>(number)) {}
 
 Int::Int(double number) : RCObject("Int"), _number(static_cast<int>(number)) {}
 
-Int::Int(const INum & number) : RCObject("Int"), _number(number.toInt()) {}
+Int::Int(const Num& number) : RCObject("Int"), _number(number.toInt()) {}
 
-Int::Int(INum* number) : RCObject("Int"), _number(number->toInt()) {}
+Int::Int(Num* number) : RCObject("Int"), _number(number->toInt()) {}
 
-Int::~Int() {}
+Int::~Int() {
+    Logger::root->log(Level::INFO, "Int dtor");
+}
 
 int Int::toInt() const {
     return (_number);
@@ -42,11 +44,11 @@ std::string Int::toString() const {
     return (ss.str());
 }
 
-void Int::operator=(INum* number) {
+void Int::operator=(Num* number) {
     _number = number->toInt();
 }
 
-void Int::operator=(const INum& number) {
+void Int::operator=(const Num& number) {
     _number = number.toInt();
 }
 
@@ -62,7 +64,7 @@ void Int::operator=(double number) {
     _number = static_cast<int>(number);
 }
 
-std::string Int::addPrefix(INum* minSize, INum* numberToAddBefore) const {
+std::string Int::addPrefix(Num* minSize, Num* numberToAddBefore) const {
     std::string before = numberToAddBefore->toString();
     std::string base = toString();
 
@@ -71,5 +73,15 @@ std::string Int::addPrefix(INum* minSize, INum* numberToAddBefore) const {
     }
     delete minSize;
     delete numberToAddBefore;
+    return (base);
+}
+
+std::string Int::addPrefix(const Num& minSize, const Num& numberToAddBefore) const {
+    std::string before = numberToAddBefore.toString();
+    std::string base = toString();
+    
+    while (base.length() < minSize.toInt()) {
+        base = before + base;
+    }
     return (base);
 }
