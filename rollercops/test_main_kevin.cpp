@@ -104,9 +104,10 @@ void tryServerSocket() {
 }
 
 int main() {
-    Int i = 2;
-    Num* j = &i;
-    Logger::root->log(Level::INFO, i.addPrefix(Int(3), Int(0)));
+    Int j = Int(12);
+    Num* i = &j;
+    
+    Logger::root->log(Level::INFO, i->addPrefix(Int(3), Int(0)));
 
 //    tryServerSocket();
 
