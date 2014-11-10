@@ -7,6 +7,7 @@
 //
 
 #include <string>
+#include <vector>
 
 #include "./ServerSocket.h"
 
@@ -92,7 +93,9 @@ void ServerSocket::close() {
 
 void ServerSocket::clientLeave(TcpSocket* socket) {
     std::vector<TcpSocket*>::iterator tmp;
-    for (std::vector<TcpSocket*>::iterator it = _clients.begin(); it != _clients.end(); ++it) {
+    for (std::vector<TcpSocket*>::iterator it = _clients.begin();
+         it != _clients.end();
+         ++it) {
         if (*it == socket) {
             tmp = it;
             break;
@@ -146,9 +149,11 @@ void* ServerSocket::threadRead(void* data) {
                               std::string(buf) + " et le port: " +
                               client_port.toString() + " et fd: " +
                               fd.toString(), true);
-            TcpSocket* socket = TcpSocket::fromServerSocket(client_descriptor,
-                                                            std::string(buf),
-                                                            client_port.getNumber(), ss);
+            TcpSocket* socket = TcpSocket::fromServerSocket(
+                                                        client_descriptor,
+                                                        std::string(buf),
+                                                        client_port.getNumber(),
+                                                        ss);
             ss->_clients.push_back(socket);
             ss->_onConnexion(*ss, socket);
         } else {

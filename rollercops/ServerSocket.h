@@ -49,7 +49,7 @@ class ServerSocket : protected RCObject {
 #endif
 
     ServerSocket();
-    
+
     std::vector<TcpSocket*> _clients;
 
     void (*_onConnexion)(ServerSocket ss, TcpSocket* socket);
@@ -72,7 +72,7 @@ class ServerSocket : protected RCObject {
     void wait();
 
     void clientLeave(TcpSocket* socket);
-    
+
     void shutdown();
     void close();
     void destroy();

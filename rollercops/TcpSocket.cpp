@@ -77,8 +77,7 @@ int TcpSocket::write(std::string message) {
         if (nbCharSend == -1) {
             _sendOnError(TcpSocketError("send function return -1"));
             return (-1);
-        }
-        else if (nbCharSend == strlen(message.c_str())) {
+        } else if (nbCharSend == strlen(message.c_str())) {
             return (1);
         }
     }

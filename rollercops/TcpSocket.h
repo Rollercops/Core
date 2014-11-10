@@ -70,7 +70,7 @@ class TcpSocket : protected RCObject {
     static TcpSocket* fromServerSocket(int fd, std::string address,
                                        int port, ServerSocket* ss);
     static void *threadRead(void* socket);
-    
+
     ~TcpSocket();
 
     int write(std::string message);
