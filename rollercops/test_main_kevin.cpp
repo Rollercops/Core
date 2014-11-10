@@ -105,7 +105,7 @@ void tryServerSocket() {
 
 int main() {
     Int i = 2;
-    Num* j = &i;
+    INum* j = &i;
     Logger::root->log(Level::INFO, i.addPrefix(new Int(3), new Int(0)));
     tryServerSocket();
 

@@ -10,17 +10,17 @@
 
 #include "Num.h"
 
-Int::Int() : Num("Int"), _number(0) {}
+Int::Int() : RCObject("Int"), _number(0) {}
 
-Int::Int(int number) : Num("Int"), _number(number) {}
+Int::Int(int number) : RCObject("Int"), _number(number) {}
 
-Int::Int(float number) : Num("Int"), _number(static_cast<int>(number)) {}
+Int::Int(float number) : RCObject("Int"), _number(static_cast<int>(number)) {}
 
-Int::Int(double number) : Num("Int"), _number(static_cast<int>(number)) {}
+Int::Int(double number) : RCObject("Int"), _number(static_cast<int>(number)) {}
 
-Int::Int(const Num & number) : Num("Int"), _number(number.toInt()) {}
+Int::Int(const INum & number) : RCObject("Int"), _number(number.toInt()) {}
 
-Int::Int(Num* number) : Num("Int"), _number(number->toInt()) {}
+Int::Int(INum* number) : RCObject("Int"), _number(number->toInt()) {}
 
 Int::~Int() {}
 
@@ -42,11 +42,11 @@ std::string Int::toString() const {
     return (ss.str());
 }
 
-void Int::operator=(Num* number) {
+void Int::operator=(INum* number) {
     _number = number->toInt();
 }
 
-void Int::operator=(const Num& number) {
+void Int::operator=(const INum& number) {
     _number = number.toInt();
 }
 
@@ -62,7 +62,7 @@ void Int::operator=(double number) {
     _number = static_cast<int>(number);
 }
 
-std::string Int::addPrefix(Num* minSize, Num* numberToAddBefore) const {
+std::string Int::addPrefix(INum* minSize, INum* numberToAddBefore) const {
     std::string before = numberToAddBefore->toString();
     std::string base = toString();
 

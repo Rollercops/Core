@@ -25,38 +25,17 @@ class INum {
     virtual double toDouble() const = 0;
     virtual float toFloat() const = 0;
     virtual std::string toString() const = 0;
-    virtual std::string addPrefix(Num* minSize,
-                                  Num* numberToAddBefore) const = 0;
+    virtual std::string addPrefix(INum* minSize,
+                                  INum* numberToAddBefore) const = 0;
 
-    virtual void operator=(Num* number) = 0;
-    virtual void operator=(const Num& number) = 0;
+    virtual void operator=(INum* number) = 0;
+    virtual void operator=(const INum& number) = 0;
     virtual void operator=(int number) = 0;
     virtual void operator=(float number) = 0;
     virtual void operator=(double number) = 0;
 };
 
-class Num : public INum, protected RCObject {
- public:
-    virtual ~Num() {}
-    virtual int toInt() const = 0;
-    virtual double toDouble() const = 0;
-    virtual float toFloat() const = 0;
-    virtual std::string toString() const  = 0;
-    virtual std::string addPrefix(Num* minSize,
-                                  Num* numberToAddBefore) const = 0;
-
-    virtual void operator=(Num* number) = 0;
-    virtual void operator=(const Num& number) = 0;
-    virtual void operator=(int number) = 0;
-    virtual void operator=(float number) = 0;
-    virtual void operator=(double number) = 0;
-
-    Num() : RCObject("Num") {}
-    Num(std::string type) : RCObject(type) {}
-    Num(const Num& number) : RCObject("Int") {}
-};
-
-class Int : public Num {
+class Int : public INum, public RCObject {
  private:
     int _number;
 
@@ -65,8 +44,8 @@ class Int : public Num {
     Int(int number);
     Int(float number);
     Int(double number);
-    Int(const Num & number);
-    explicit Int(Num* number);
+    Int(const INum & number);
+    explicit Int(INum* number);
     ~Int();
 
     int toInt() const;
@@ -75,13 +54,13 @@ class Int : public Num {
 
     std::string toString() const;
 
-    void operator=(Num* number);
-    void operator=(const Num& number);
+    void operator=(INum* number);
+    void operator=(const INum& number);
     void operator=(int number);
     void operator=(float number);
     void operator=(double number);
 
-    std::string addPrefix(Num* minSize, Num* numberToAddBefore) const;
+    std::string addPrefix(INum* minSize, INum* numberToAddBefore) const;
 };
 
 
