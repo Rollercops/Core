@@ -6,18 +6,18 @@
 //  Copyright (c) 2014 kevin segaud. All rights reserved.
 //
 
-#include <stdio.h>
+# include <stdio.h>
 
-#include <string>
-#include <strings.h>
+# include <string>
+# include <strings.h>
 
-#include "./Logging.h"
-#include "./DateTime.h"
-#include "./Number.h"
-#include "./ServerSocket.h"
-#include "./TcpSocket.h"
+# include "./Logging.h"
+# include "./DateTime.h"
+# include "./Number.h"
+# include "./ServerSocket.h"
+# include "./TcpSocket.h"
 
-#include "./Num.h"
+# include "./Num.h"
 
 int nbClient = 0;
 
