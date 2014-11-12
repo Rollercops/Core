@@ -1,0 +1,19 @@
+CC=	g++
+
+NAME=	bin
+
+OBJ=	
+
+$(NAME):
+	$(CC) $(OBJ) -o $(NAME)
+
+all:	$(NAME)
+
+clean:
+	rm -f *~
+
+fclean:
+	rm -f *~
+	rm bin
+
+re:	fclean all

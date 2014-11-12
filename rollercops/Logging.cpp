@@ -9,7 +9,7 @@
 #include <string>
 #include <map>
 
-#include "./logging.h"
+#include "./Logging.h"
 
 const Level Level::ALL = Level("ALL", 0);
 const Level Level::OFF = Level("OFF", 2000);
@@ -132,7 +132,7 @@ void Logger::log(const Level& level, std::string message, bool addRC) const {
             onRecord(lr);
             delete lr;
         } else {
-            Logger::write(lr->toString(), addRC);
+            Logger::Logwrite(lr->toString(), addRC);
             delete lr;
         }
 # if defined(__linux) || defined(__unix) || defined(__APPLE__)
@@ -141,11 +141,11 @@ void Logger::log(const Level& level, std::string message, bool addRC) const {
     }
 }
 
-bool Logger::write(std::string message, bool addCr) {
+bool Logger::Logwrite(std::string message, bool addCr) {
     if (addCr) {
         message = message + "\n";
     }
-    ssize_t ret = ::write(1, message.c_str(), message.length());
+    ssize_t ret = write(1, message.c_str(), message.length());
     if (ret == -1) {
         return (false);
     }
@@ -183,6 +183,6 @@ std::string LogRecord::toString() const {
 }
 
 void writerDebug(LogRecord *logRecord) {
-    Logger::write(logRecord->toString());
+    Logger::Logwrite(logRecord->toString());
 }
 

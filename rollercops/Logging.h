@@ -12,6 +12,8 @@
 # if defined(__linux) || defined(__unix) || defined(__APPLE__)
 #  include <stdio.h>
 #  include <pthread.h>
+#  include <unistd.h>
+
 # endif
 
 # include <string>
@@ -80,7 +82,7 @@ class Logger : protected RCObject {
 #endif
     static std::map<std::string, Logger*> loggers;
     static Logger* Singleton(std::string name = "");
-    static bool write(std::string message, bool addCr = true);
+    static bool Logwrite(std::string message, bool addCr = true);
     static bool destroyLogger(std::string name);
     static void destroyAllLogger();
 

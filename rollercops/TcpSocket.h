@@ -9,12 +9,15 @@
 #ifndef ROLLERCOPS_TCPSOCKET_H_
 #define ROLLERCOPS_TCPSOCKET_H_
 
-#include <string>
+# include <string>
+# include <strings.h>
+# include "./Logging.h"
+# include "./Error.h"
+# include "./RCObject.h"
+# include "./ServerSocket.h"
+# include <stdio.h>
+# include <string.h>
 
-#include "./Logging.h"
-#include "./Error.h"
-#include "./RCObject.h"
-#include "./ServerSocket.h"
 
 # if defined(_WIN32) || defined(_WIN64)
 #  include <winsock2.h>

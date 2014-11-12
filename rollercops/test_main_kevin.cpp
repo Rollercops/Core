@@ -9,10 +9,11 @@
 #include <stdio.h>
 
 #include <string>
+#include <strings.h>
 
 #include "./Logging.h"
 #include "./DateTime.h"
-#include "./number.h"
+#include "./Number.h"
 #include "./ServerSocket.h"
 #include "./TcpSocket.h"
 
