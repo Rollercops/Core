@@ -16,7 +16,6 @@
 #include "./Number.h"
 #include "./ServerSocket.h"
 #include "./TcpSocket.h"
-
 #include "./Num.h"
 
 int nbClient = 0;
