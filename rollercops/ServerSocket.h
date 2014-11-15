@@ -11,14 +11,13 @@
 #define ROLLERCOPS_SERVERSOCKET_H_
 
 # include <string>
-# include <strings.h>
 # include <vector>
-#  include <pthread.h>
 
 # if defined(__linux) || defined(__unix) || defined(__APPLE__)
 #  include <sys/types.h>
 #  include <sys/socket.h>
 #  include <arpa/inet.h>
+#  include <strings.h>
 #  include <pthread.h>
 # endif
 

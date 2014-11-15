@@ -76,10 +76,11 @@ std::string Int::addPrefix(Num* minSize, Num* numberToAddBefore) const {
     return (base);
 }
 
-std::string Int::addPrefix(const Num& minSize, const Num& numberToAddBefore) const {
+std::string Int::addPrefix(const Num& minSize,
+                           const Num& numberToAddBefore) const {
     std::string before = numberToAddBefore.toString();
     std::string base = toString();
-    
+
     while (base.length() < minSize.toInt()) {
         base = before + base;
     }

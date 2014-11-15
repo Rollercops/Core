@@ -10,13 +10,6 @@
 #define ROLLERCOPS_TCPSOCKET_H_
 
 # include <string>
-# include <strings.h>
-# include "./Logging.h"
-# include "./Error.h"
-# include "./RCObject.h"
-# include "./ServerSocket.h"
-# include <stdio.h>
-# include <string.h>
 
 
 # if defined(_WIN32) || defined(_WIN64)
@@ -31,7 +24,15 @@
 #  include <unistd.h> /* close */
 #  include <netdb.h> /* gethostbyname */
 #  include <pthread.h>
+#  include <strings.h>
+#  include <stdio.h>
+#  include <string.h>
 # endif
+
+# include "./Logging.h"
+# include "./Error.h"
+# include "./RCObject.h"
+# include "./ServerSocket.h"
 
 class ServerSocket;
 

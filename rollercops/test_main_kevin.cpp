@@ -6,18 +6,18 @@
 //  Copyright (c) 2014 kevin segaud. All rights reserved.
 //
 
-# include <stdio.h>
+#include <strings.h>
+#include <stdio.h>
 
-# include <string>
-# include <strings.h>
+#include <string>
 
-# include "./Logging.h"
-# include "./DateTime.h"
-# include "./Number.h"
-# include "./ServerSocket.h"
-# include "./TcpSocket.h"
+#include "./Logging.h"
+#include "./DateTime.h"
+#include "./Number.h"
+#include "./ServerSocket.h"
+#include "./TcpSocket.h"
 
-# include "./Num.h"
+#include "./Num.h"
 
 int nbClient = 0;
 
@@ -107,7 +107,7 @@ void tryServerSocket() {
 int main() {
     Int j = Int(12);
     Num* i = &j;
-    
+
     Logger::root->log(Level::INFO, i->addPrefix(Int(3), Int(0)));
 
 //    tryServerSocket();

@@ -19,7 +19,7 @@
 
 class Num {
  public:
-    virtual ~Num() {};
+    virtual ~Num() {}
     virtual int toInt() const = 0;
     virtual double toDouble() const = 0;
     virtual float toFloat() const = 0;
@@ -55,7 +55,8 @@ class Int : public Num, public RCObject {
 
     std::string toString() const;
     std::string addPrefix(Num* minSize, Num* numberToAddBefore) const;
-    std::string addPrefix(const Num& minSize, const Num& numberToAddBefore) const;
+    std::string addPrefix(const Num& minSize,
+                          const Num& numberToAddBefore) const;
 
     void operator=(Num* number);
     void operator=(const Num& number);
