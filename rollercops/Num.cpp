@@ -22,9 +22,7 @@ Int::Int(const Num& number) : RCObject("Int"), _number(number.toInt()) {}
 
 Int::Int(Num* number) : RCObject("Int"), _number(number->toInt()) {}
 
-Int::~Int() {
-    Logger::root->log(Level::INFO, "Int dtor");
-}
+Int::~Int() {}
 
 int Int::toInt() const {
     return (_number);
