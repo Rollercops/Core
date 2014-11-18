@@ -82,7 +82,7 @@ class Logger : protected RCObject {
 #endif
     static std::map<std::string, Logger*> loggers;
     static Logger* Singleton(std::string name = "");
-    static bool Logwrite(std::string message, bool addCr = true);
+    static bool logWrite(std::string message, bool addCr = true);
     static bool destroyLogger(std::string name);
     static void destroyAllLogger();
 

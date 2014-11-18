@@ -132,7 +132,7 @@ void Logger::log(const Level& level, std::string message, bool addRC) const {
             onRecord(lr);
             delete lr;
         } else {
-            Logger::Logwrite(lr->toString(), addRC);
+            Logger::logWrite(lr->toString(), addRC);
             delete lr;
         }
 # if defined(__linux) || defined(__unix) || defined(__APPLE__)
@@ -141,7 +141,7 @@ void Logger::log(const Level& level, std::string message, bool addRC) const {
     }
 }
 
-bool Logger::Logwrite(std::string message, bool addCr) {
+bool Logger::logWrite(std::string message, bool addCr) {
     if (addCr) {
         message = message + "\n";
     }
@@ -183,6 +183,6 @@ std::string LogRecord::toString() const {
 }
 
 void writerDebug(LogRecord *logRecord) {
-    Logger::Logwrite(logRecord->toString());
+    Logger::logWrite(logRecord->toString());
 }
 
