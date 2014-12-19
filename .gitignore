@@ -1,2 +1,8 @@
 *.cpp~
 *.c~
+
+xcuserdata
+
+*.pbxproj
+*.xcuserstate
+xcuserdatad
