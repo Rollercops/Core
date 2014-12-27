@@ -1,0 +1,9 @@
+Socket Center interface class (abstract if possible common code)
+File class
+Thread class
+Mutex class
+
+> thread safety
+> connection protocole
+> identification protocole
+> authentication protocole

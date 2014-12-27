@@ -1,0 +1,32 @@
+/home/andelruce/Documents/Dev/Rollercops/Core/Code/Sources/TcpSock.hh:16: warning: Compound TcpSock is not documented.
+/home/andelruce/Documents/Dev/Rollercops/Core/Code/Sources/Sock.hh:35: warning: Compound Sock is not documented.
+/home/andelruce/Documents/Dev/Rollercops/Core/Code/Sources/Sock.hh:42: warning: Member Sock(int type) (function) of class Sock is not documented.
+/home/andelruce/Documents/Dev/Rollercops/Core/Code/Sources/Sock.hh:50: warning: Member getFd() const  (function) of class Sock is not documented.
+/home/andelruce/Documents/Dev/Rollercops/Core/Code/Sources/Sock.hh:48: warning: Member init() (function) of class Sock is not documented.
+/home/andelruce/Documents/Dev/Rollercops/Core/Code/Sources/Sock.hh:49: warning: Member end() (function) of class Sock is not documented.
+/home/andelruce/Documents/Dev/Rollercops/Core/Code/Sources/Sock.hh:37: warning: Member _fd (variable) of class Sock is not documented.
+/home/andelruce/Documents/Dev/Rollercops/Core/Code/Sources/Sock.hh:39: warning: Member Sock(Sock const &) (function) of class Sock is not documented.
+/home/andelruce/Documents/Dev/Rollercops/Core/Code/Sources/Sock.hh:40: warning: Member operator=(Sock const &) (function) of class Sock is not documented.
+/home/andelruce/Documents/Dev/Rollercops/Core/Code/Sources/TcpSock.hh:29: warning: Member TcpSock(int port) (function) of class TcpSock is not documented.
+/home/andelruce/Documents/Dev/Rollercops/Core/Code/Sources/TcpSock.hh:31: warning: Member TcpSock(int port, std::string ip) (function) of class TcpSock is not documented.
+/home/andelruce/Documents/Dev/Rollercops/Core/Code/Sources/TcpSock.hh:37: warning: Member sBind(int port) (function) of class TcpSock is not documented.
+/home/andelruce/Documents/Dev/Rollercops/Core/Code/Sources/TcpSock.hh:38: warning: Member sAccept() (function) of class TcpSock is not documented.
+/home/andelruce/Documents/Dev/Rollercops/Core/Code/Sources/TcpSock.hh:39: warning: Member cConnect(int port, std::string ip) (function) of class TcpSock is not documented.
+/home/andelruce/Documents/Dev/Rollercops/Core/Code/Sources/TcpSock.hh:40: warning: Member queue(std::string &msg) (function) of class TcpSock is not documented.
+/home/andelruce/Documents/Dev/Rollercops/Core/Code/Sources/TcpSock.hh:41: warning: Member upToDate() const  (function) of class TcpSock is not documented.
+/home/andelruce/Documents/Dev/Rollercops/Core/Code/Sources/TcpSock.hh:42: warning: Member write() (function) of class TcpSock is not documented.
+/home/andelruce/Documents/Dev/Rollercops/Core/Code/Sources/TcpSock.hh:43: warning: Member read() (function) of class TcpSock is not documented.
+/home/andelruce/Documents/Dev/Rollercops/Core/Code/Sources/TcpSock.hh:44: warning: Member isEmpty() const  (function) of class TcpSock is not documented.
+/home/andelruce/Documents/Dev/Rollercops/Core/Code/Sources/TcpSock.hh:45: warning: Member getMsg() (function) of class TcpSock is not documented.
+/home/andelruce/Documents/Dev/Rollercops/Core/Code/Sources/Sock.hh:42: warning: Member Sock(int type) (function) of class Sock is not documented.
+/home/andelruce/Documents/Dev/Rollercops/Core/Code/Sources/Sock.hh:50: warning: Member getFd() const  (function) of class Sock is not documented.
+/home/andelruce/Documents/Dev/Rollercops/Core/Code/Sources/TcpSock.hh:34: warning: Member TcpSock(TcpSock const &main) (function) of class TcpSock is not documented.
+/home/andelruce/Documents/Dev/Rollercops/Core/Code/Sources/TcpSock.hh:18: warning: Member _sin (variable) of class TcpSock is not documented.
+/home/andelruce/Documents/Dev/Rollercops/Core/Code/Sources/TcpSock.hh:19: warning: Member _oBuff (variable) of class TcpSock is not documented.
+/home/andelruce/Documents/Dev/Rollercops/Core/Code/Sources/TcpSock.hh:20: warning: Member _buff[BUFF_SIZE] (variable) of class TcpSock is not documented.
+/home/andelruce/Documents/Dev/Rollercops/Core/Code/Sources/TcpSock.hh:21: warning: Member _iBuff (variable) of class TcpSock is not documented.
+/home/andelruce/Documents/Dev/Rollercops/Core/Code/Sources/TcpSock.hh:22: warning: Member _msg (variable) of class TcpSock is not documented.
+/home/andelruce/Documents/Dev/Rollercops/Core/Code/Sources/Sock.hh:37: warning: Member _fd (variable) of class Sock is not documented.
+/home/andelruce/Documents/Dev/Rollercops/Core/Code/Sources/TcpSock.hh:24: warning: Member operator=(TcpSock const &) (function) of class TcpSock is not documented.
+/home/andelruce/Documents/Dev/Rollercops/Core/Code/Sources/Sock.hh:48: warning: Member init() (function) of class Sock is not documented.
+/home/andelruce/Documents/Dev/Rollercops/Core/Code/Sources/Sock.hh:49: warning: Member end() (function) of class Sock is not documented.
